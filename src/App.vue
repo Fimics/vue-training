@@ -2,7 +2,8 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
 <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-    <FirstVue message ="hello world"/>
+    <FirstVue message ="hello world11"/>
+    <LifeCycle/>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 
 // import HelloWorld from './components/HelloWorld.vue'
 import FirstVue from "@/test/FirstVue.vue";
+import LifeCycle from "@/test/LifeCycle.vue";
 
 export default {
   name: 'App',
@@ -17,6 +19,7 @@ export default {
   //   HelloWorld
   // }
   components: {
+    LifeCycle,
     FirstVue
   }
 }
