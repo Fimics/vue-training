@@ -9,6 +9,7 @@
     <CommandIf message="command if"/>
     <CommandFor message="command for"/>
     <CommandModel message="command model"/>
+    <CommandOn message = "command on"/>
   </div>
 </template>
 
@@ -22,6 +23,7 @@ import PropBind  from "@/test/PropBind.vue";
 import CommandIf from "@/test/CommandIf.vue";
 import CommandFor  from "@/test/CommandFor.vue";
 import CommandModel from "@/test/CommandModel.vue";
+import CommandOn from "@/test/CommandOn.vue";
 
 
 export default {
@@ -36,7 +38,8 @@ export default {
     TemplateInterpolation,
     CommandIf,
     CommandFor,
-    CommandModel
+    CommandModel,
+    CommandOn
   }
 }
 </script>
