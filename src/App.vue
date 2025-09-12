@@ -4,6 +4,7 @@
 <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
     <FirstVue message ="hello world11"/>
     <LifeCycle/>
+    <TemplateInterpolation message="TI"/>
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 // import HelloWorld from './components/HelloWorld.vue'
 import FirstVue from "@/test/FirstVue.vue";
 import LifeCycle from "@/test/LifeCycle.vue";
+import TemplateInterpolation  from "@/test/TemplateInterpolation.vue";
 
 export default {
   name: 'App',
@@ -20,7 +22,8 @@ export default {
   // }
   components: {
     LifeCycle,
-    FirstVue
+    FirstVue,
+    TemplateInterpolation
   }
 }
 </script>
