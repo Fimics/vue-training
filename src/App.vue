@@ -7,6 +7,7 @@
     <TemplateInterpolation message="TI"/>
     <PropBind message="prop"/>
     <CommandIf message="command if"/>
+    <CommandFor message="command for"/>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import LifeCycle from "@/test/LifeCycle.vue";
 import TemplateInterpolation  from "@/test/TemplateInterpolation.vue";
 import PropBind  from "@/test/PropBind.vue";
 import CommandIf from "@/test/CommandIf.vue";
+import CommandFor  from "@/test/CommandFor.vue";
 
 
 export default {
@@ -30,7 +32,8 @@ export default {
     LifeCycle,
     FirstVue,
     TemplateInterpolation,
-    CommandIf
+    CommandIf,
+    CommandFor
   }
 }
 </script>
