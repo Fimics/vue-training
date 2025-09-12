@@ -5,6 +5,8 @@
     <FirstVue message ="hello world11"/>
     <LifeCycle/>
     <TemplateInterpolation message="TI"/>
+    <PropBind message="prop"/>
+    <CommandIf message="command if"/>
   </div>
 </template>
 
@@ -14,6 +16,9 @@
 import FirstVue from "@/test/FirstVue.vue";
 import LifeCycle from "@/test/LifeCycle.vue";
 import TemplateInterpolation  from "@/test/TemplateInterpolation.vue";
+import PropBind  from "@/test/PropBind.vue";
+import CommandIf from "@/test/CommandIf.vue";
+
 
 export default {
   name: 'App',
@@ -21,9 +26,11 @@ export default {
   //   HelloWorld
   // }
   components: {
+    PropBind,
     LifeCycle,
     FirstVue,
-    TemplateInterpolation
+    TemplateInterpolation,
+    CommandIf
   }
 }
 </script>
