@@ -30,6 +30,8 @@
       <CommandModel message="command model"/>
       <CommandOn message="command on"/>
       <ReactiveDemo message="reactive demo"/>
+      <EventClick message="event click"/>
+      <EventKey message="event key"/>
     </div>
   </div>
 </template>
@@ -46,6 +48,8 @@ import CommandFor  from "@/test/CommandFor.vue";
 import CommandModel from "@/test/CommandModel.vue";
 import CommandOn from "@/test/CommandOn.vue";
 import ReactiveDemo from "@/test/ReactiveDemo.vue";
+import EventClick from "@/test/EventClick.vue";
+import EventKey from "@/test/EventKey.vue";
 
 
 export default {
@@ -62,7 +66,9 @@ export default {
     CommandFor,
     CommandModel,
     CommandOn,
-    ReactiveDemo
+    ReactiveDemo,
+    EventClick,
+    EventKey
   }
 }
 </script>
