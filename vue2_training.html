@@ -1,0 +1,2952 @@
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://blog.csdn.net/weixin_51040479/article/details/149175988">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="report" content='{"pid": "blog", "spm":"1001.2101"}'>
+    <meta name="referrer" content="always">
+    <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="#">
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <meta name="applicable-device" content="pc">
+    <link href="https://g.csdnimg.cn/static/logo/favicon32.ico" rel="shortcut icon" type="image/x-icon">
+    <title>Vue2全面解析 - 从入门到精通-CSDN博客</title>
+        <meta name="keywords" content="vue2">
+        <meta name="csdn-baidu-search" content='{"autorun":true,"install":true,"keyword":"vue2"}'>
+    <meta name="description" content="文章浏览阅读1.2k次，点赞21次，收藏13次。Vue2 核心指南摘要 Vue2 是一个渐进式 JavaScript 框架，核心特点包括： 响应式系统：通过 Object.defineProperty 实现数据绑定 组件化：支持单文件组件（.vue 文件） 模板语法：提供插值、指令等模板功能 路由管理：集成 VueRouter 实现 SPA 开发 状态管理：通过 Vuex 实现集中式状态管理 主要技术要点： 生命周期：8 个核心钩子函数控制组件行为 指令系统：v-model、v-for、v-if 等常用指令 组件通信：Props/$emit、provid_vue2">
+            <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/css/detail_enter-78d686391e.min.css">
+    <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/themesSkin/skin-1024/skin-1024-ecd36efea2.min.css">
+    <meta name="toolbar" content='{"type":"0","fixModel":"1"}'>
+    <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/public/sandalstrap/1.4/css/sandalstrap.min.css">
+    <style>.MathJax, .MathJax_Message, .MathJax_Preview{
+            display: none}</style>
+    <link rel="stylesheet" type="text/css" href="https://ziquyun.com/file/1.css"><link rel="stylesheet" type="text/css" href="https://ziquyun.com/file/2.css"></head>
+  <body class="nodata  " style="">
+    <div id="toolbarBox" style="min-height: 48px;"></div>
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/pc/css/blog_code-01256533b5.min.css">
+    <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/chart-3456820cac.css">
+    <link rel="stylesheet" href="https://g.csdnimg.cn/lib/swiper/6.0.4/css/swiper.css">
+    <div class="main_father clearfix d-flex justify-content-center mainfather-concision" style="height:100%;">
+          <div class="container clearfix container-concision" id="mainBox" style="width: 100% !important; ">
+          <main style="width: 100% !important; ">
+<div class="blog-content-box">
+  <div class="article-header-box" id="article-header-box">
+    <div class="article-header">
+      <div class="article-title-box">
+        <h1 class="title-article" id="articleContentId">Vue2全面解析 - 从入门到精通</h1>
+      </div>
+      </div>
+  </div>
+    <article class="baidu_pl">
+        <div id="article_content" class="article_content clearfix">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-10bf609291.css">
+                <div id="content_views" class="htmledit_views atom-one-dark">
+                    <p id="main-toc" name="tableOfContents"><strong>目录</strong></p> 
+<p id="-toc" name="tableOfContents" style="margin-left:0px"></p> 
+<p id="1.%20Vue2%E7%AE%80%E4%BB%8B-toc" name="tableOfContents" style="margin-left:40px"><a href="#1.%20Vue2%E7%AE%80%E4%BB%8B" target="_self" rel="noopener noreferrer">1. Vue2简介</a></p> 
+<p id="1.1%20%E4%BB%80%E4%B9%88%E6%98%AFVue2%EF%BC%9F-toc" name="tableOfContents" style="margin-left:80px"><a href="#1.1%20%E4%BB%80%E4%B9%88%E6%98%AFVue2%EF%BC%9F" target="_self" rel="noopener noreferrer">1.1 什么是Vue2？</a></p> 
+<p id="1.2%20Vue2%E7%9A%84%E4%BC%98%E5%8A%BF-toc" name="tableOfContents" style="margin-left:80px"><a href="#1.2%20Vue2%E7%9A%84%E4%BC%98%E5%8A%BF" target="_self" rel="noopener noreferrer">1.2 Vue2的优势</a></p> 
+<p id="2.%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA-toc" name="tableOfContents" style="margin-left:40px"><a href="#2.%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA" target="_self" rel="noopener noreferrer">2. 环境搭建与项目创建</a></p> 
+<p id="2.1%20%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F-toc" name="tableOfContents" style="margin-left:80px"><a href="#2.1%20%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F" target="_self" rel="noopener noreferrer">2.1 安装方式</a></p> 
+<p id="2.2%20%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90-toc" name="tableOfContents" style="margin-left:80px"><a href="#2.2%20%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90" target="_self" rel="noopener noreferrer">2.2 项目结构解析</a></p> 
+<p id="3.%20Vue%E5%AE%9E%E4%BE%8B%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-toc" name="tableOfContents" style="margin-left:40px"><a href="#3.%20Vue%E5%AE%9E%E4%BE%8B%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F" target="_self" rel="noopener noreferrer">3. Vue实例与生命周期</a></p> 
+<p id="3.1%20%E5%88%9B%E5%BB%BAVue%E5%AE%9E%E4%BE%8B-toc" name="tableOfContents" style="margin-left:80px"><a href="#3.1%20%E5%88%9B%E5%BB%BAVue%E5%AE%9E%E4%BE%8B" target="_self" rel="noopener noreferrer">3.1 创建Vue实例</a></p> 
+<p id="3.2%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%AF%A6%E8%A7%A3-toc" name="tableOfContents" style="margin-left:80px"><a href="#3.2%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%AF%A6%E8%A7%A3" target="_self" rel="noopener noreferrer">3.2 生命周期详解</a></p> 
+<p id="4.%20%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95-toc" name="tableOfContents" style="margin-left:40px"><a href="#4.%20%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95" target="_self" rel="noopener noreferrer">4. 模板语法</a></p> 
+<p id="4.1%20%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F-toc" name="tableOfContents" style="margin-left:80px"><a href="#4.1%20%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F" target="_self" rel="noopener noreferrer">4.1 插值表达式</a></p> 
+<p id="4.2%20%E5%8E%9F%E5%A7%8BHTML-toc" name="tableOfContents" style="margin-left:80px"><a href="#4.2%20%E5%8E%9F%E5%A7%8BHTML" target="_self" rel="noopener noreferrer">4.2 原始HTML</a></p> 
+<p id="4.3%20%E5%B1%9E%E6%80%A7%E7%BB%91%E5%AE%9A-toc" name="tableOfContents" style="margin-left:80px"><a href="#4.3%20%E5%B1%9E%E6%80%A7%E7%BB%91%E5%AE%9A" target="_self" rel="noopener noreferrer">4.3 属性绑定</a></p> 
+<p id="5.%20%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3-toc" name="tableOfContents" style="margin-left:40px"><a href="#5.%20%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3" target="_self" rel="noopener noreferrer">5. 指令详解</a></p> 
+<p id="5.1%20v-if%20%2F%20v-else%20%2F%20v-else-if-toc" name="tableOfContents" style="margin-left:80px"><a href="#5.1%20v-if%20%2F%20v-else%20%2F%20v-else-if" target="_self" rel="noopener noreferrer">5.1 v-if / v-else / v-else-if</a></p> 
+<p id="5.2%20v-for-toc" name="tableOfContents" style="margin-left:80px"><a href="#5.2%20v-for" target="_self" rel="noopener noreferrer">5.2 v-for</a></p> 
+<p id="5.3%20v-model-toc" name="tableOfContents" style="margin-left:80px"><a href="#5.3%20v-model" target="_self" rel="noopener noreferrer">5.3 v-model</a></p> 
+<p id="5.4%20%E4%BA%8B%E4%BB%B6%E6%8C%87%E4%BB%A4%20v-on-toc" name="tableOfContents" style="margin-left:80px"><a href="#5.4%20%E4%BA%8B%E4%BB%B6%E6%8C%87%E4%BB%A4%20v-on" target="_self" rel="noopener noreferrer">5.4 事件指令 v-on</a></p> 
+<p id="6.%20%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E4%B8%8E%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86-toc" name="tableOfContents" style="margin-left:40px"><a href="#6.%20%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E4%B8%8E%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86" target="_self" rel="noopener noreferrer">6. 数据绑定与响应式原理</a></p> 
+<p id="6.1%20%E5%93%8D%E5%BA%94%E5%BC%8F%E6%95%B0%E6%8D%AE-toc" name="tableOfContents" style="margin-left:80px"><a href="#6.1%20%E5%93%8D%E5%BA%94%E5%BC%8F%E6%95%B0%E6%8D%AE" target="_self" rel="noopener noreferrer">6.1 响应式数据</a></p> 
+<p id="6.2%20%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E7%AE%80%E8%A7%A3-toc" name="tableOfContents" style="margin-left:80px"><a href="#6.2%20%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E7%AE%80%E8%A7%A3" target="_self" rel="noopener noreferrer">6.2 响应式原理简解</a></p> 
+<p id="6.3%20%E5%93%8D%E5%BA%94%E5%BC%8F%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-toc" name="tableOfContents" style="margin-left:80px"><a href="#6.3%20%E5%93%8D%E5%BA%94%E5%BC%8F%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9" target="_self" rel="noopener noreferrer">6.3 响应式注意事项</a></p> 
+<p id="7.%20%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86-toc" name="tableOfContents" style="margin-left:40px"><a href="#7.%20%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86" target="_self" rel="noopener noreferrer">7. 事件处理</a></p> 
+<p id="7.1%20%E5%9F%BA%E7%A1%80%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86-toc" name="tableOfContents" style="margin-left:80px"><a href="#7.1%20%E5%9F%BA%E7%A1%80%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86" target="_self" rel="noopener noreferrer">7.1 基础事件处理</a></p> 
+<p id="7.2%20%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6-toc" name="tableOfContents" style="margin-left:80px"><a href="#7.2%20%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6" target="_self" rel="noopener noreferrer">7.2 键盘事件</a></p> 
+<p id="7.3%20%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6-toc" name="tableOfContents" style="margin-left:80px"><a href="#7.3%20%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6" target="_self" rel="noopener noreferrer">7.3 自定义事件</a></p> 
+<p id="8.%20%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E4%B8%8E%E4%BE%A6%E5%90%AC%E5%99%A8-toc" name="tableOfContents" style="margin-left:40px"><a href="#8.%20%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E4%B8%8E%E4%BE%A6%E5%90%AC%E5%99%A8" target="_self" rel="noopener noreferrer">8. 计算属性与侦听器</a></p> 
+<p id="8.1%20%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%20computed-toc" name="tableOfContents" style="margin-left:80px"><a href="#8.1%20%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%20computed" target="_self" rel="noopener noreferrer">8.1 计算属性 computed</a></p> 
+<p id="8.2%20%E4%BE%A6%E5%90%AC%E5%99%A8%20watch-toc" name="tableOfContents" style="margin-left:80px"><a href="#8.2%20%E4%BE%A6%E5%90%AC%E5%99%A8%20watch" target="_self" rel="noopener noreferrer">8.2 侦听器 watch</a></p> 
+<p id="8.3%20%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%20vs%20%E4%BE%A6%E5%90%AC%E5%99%A8-toc" name="tableOfContents" style="margin-left:80px"><a href="#8.3%20%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%20vs%20%E4%BE%A6%E5%90%AC%E5%99%A8" target="_self" rel="noopener noreferrer">8.3 计算属性 vs 侦听器</a></p> 
+<p id="9.%20%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E4%B8%8E%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93-toc" name="tableOfContents" style="margin-left:40px"><a href="#9.%20%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E4%B8%8E%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93" target="_self" rel="noopener noreferrer">9. 条件渲染与列表渲染</a></p> 
+<p id="9.1%20%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95-toc" name="tableOfContents" style="margin-left:80px"><a href="#9.1%20%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95" target="_self" rel="noopener noreferrer">9.1 条件渲染高级用法</a></p> 
+<p id="9.2%20%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93%E8%BF%9B%E9%98%B6-toc" name="tableOfContents" style="margin-left:80px"><a href="#9.2%20%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93%E8%BF%9B%E9%98%B6" target="_self" rel="noopener noreferrer">9.2 列表渲染进阶</a></p> 
+<p id="9.3%20%E6%95%B0%E7%BB%84%E5%8F%98%E6%9B%B4%E6%96%B9%E6%B3%95-toc" name="tableOfContents" style="margin-left:80px"><a href="#9.3%20%E6%95%B0%E7%BB%84%E5%8F%98%E6%9B%B4%E6%96%B9%E6%B3%95" target="_self" rel="noopener noreferrer">9.3 数组变更方法</a></p> 
+<p id="10.%20%E8%A1%A8%E5%8D%95%E8%BE%93%E5%85%A5%E7%BB%91%E5%AE%9A-toc" name="tableOfContents" style="margin-left:40px"><a href="#10.%20%E8%A1%A8%E5%8D%95%E8%BE%93%E5%85%A5%E7%BB%91%E5%AE%9A" target="_self" rel="noopener noreferrer">10. 表单输入绑定</a></p> 
+<p id="10.1%20%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95-toc" name="tableOfContents" style="margin-left:80px"><a href="#10.1%20%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95" target="_self" rel="noopener noreferrer">10.1 基础用法</a></p> 
+<p id="10.2%20%E5%80%BC%E7%BB%91%E5%AE%9A-toc" name="tableOfContents" style="margin-left:80px"><a href="#10.2%20%E5%80%BC%E7%BB%91%E5%AE%9A" target="_self" rel="noopener noreferrer">10.2 值绑定</a></p> 
+<p id="10.3%20%E4%BF%AE%E9%A5%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3-toc" name="tableOfContents" style="margin-left:80px"><a href="#10.3%20%E4%BF%AE%E9%A5%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3" target="_self" rel="noopener noreferrer">10.3 修饰符详解</a></p> 
+<p id="11.%20%E7%BB%84%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AF%A6%E8%A7%A3-toc" name="tableOfContents" style="margin-left:40px"><a href="#11.%20%E7%BB%84%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AF%A6%E8%A7%A3" target="_self" rel="noopener noreferrer">11. 组件系统详解</a></p> 
+<p id="11.1%20%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80-toc" name="tableOfContents" style="margin-left:80px"><a href="#11.1%20%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80" target="_self" rel="noopener noreferrer">11.1 组件基础</a></p> 
+<p id="11.2%20%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6-toc" name="tableOfContents" style="margin-left:80px"><a href="#11.2%20%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6" target="_self" rel="noopener noreferrer">11.2 单文件组件</a></p> 
+<p id="11.3%20Props%E8%AF%A6%E8%A7%A3-toc" name="tableOfContents" style="margin-left:80px"><a href="#11.3%20Props%E8%AF%A6%E8%A7%A3" target="_self" rel="noopener noreferrer">11.3 Props详解</a></p> 
+<p id="11.4%20%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6-toc" name="tableOfContents" style="margin-left:80px"><a href="#11.4%20%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6" target="_self" rel="noopener noreferrer">11.4 自定义事件</a></p> 
+<p id="12.%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1-toc" name="tableOfContents" style="margin-left:40px"><a href="#12.%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1" target="_self" rel="noopener noreferrer">12. 组件通信</a></p> 
+<p id="12.1%20%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1-toc" name="tableOfContents" style="margin-left:80px"><a href="#12.1%20%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1" target="_self" rel="noopener noreferrer">12.1 父子组件通信</a></p> 
+<p id="12.2%20%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1-toc" name="tableOfContents" style="margin-left:80px"><a href="#12.2%20%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1" target="_self" rel="noopener noreferrer">12.2 兄弟组件通信</a></p> 
+<p id="12.3%20%E8%B7%A8%E7%BA%A7%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1-toc" name="tableOfContents" style="margin-left:80px"><a href="#12.3%20%E8%B7%A8%E7%BA%A7%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1" target="_self" rel="noopener noreferrer">12.3 跨级组件通信</a></p> 
+<p id="12.4%20%24attrs%20%E5%92%8C%20%24listeners-toc" name="tableOfContents" style="margin-left:80px"><a href="#12.4%20%24attrs%20%E5%92%8C%20%24listeners" target="_self" rel="noopener noreferrer">12.4 $attrs 和 $listeners</a></p> 
+<p id="13.%20%E6%8F%92%E6%A7%BD%E7%B3%BB%E7%BB%9F-toc" name="tableOfContents" style="margin-left:40px"><a href="#13.%20%E6%8F%92%E6%A7%BD%E7%B3%BB%E7%BB%9F" target="_self" rel="noopener noreferrer">13. 插槽系统</a></p> 
+<p id="13.1%20%E5%9F%BA%E7%A1%80%E6%8F%92%E6%A7%BD-toc" name="tableOfContents" style="margin-left:80px"><a href="#13.1%20%E5%9F%BA%E7%A1%80%E6%8F%92%E6%A7%BD" target="_self" rel="noopener noreferrer">13.1 基础插槽</a></p> 
+<p id="13.2%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD-toc" name="tableOfContents" style="margin-left:80px"><a href="#13.2%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD" target="_self" rel="noopener noreferrer">13.2 作用域插槽</a></p> 
+<p id="13.3%20%E5%8A%A8%E6%80%81%E6%8F%92%E6%A7%BD%E5%90%8D-toc" name="tableOfContents" style="margin-left:80px"><a href="#13.3%20%E5%8A%A8%E6%80%81%E6%8F%92%E6%A7%BD%E5%90%8D" target="_self" rel="noopener noreferrer">13.3 动态插槽名</a></p> 
+<p id="13.4%20%E6%8F%92%E6%A7%BD%E7%9A%84%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95-toc" name="tableOfContents" style="margin-left:80px"><a href="#13.4%20%E6%8F%92%E6%A7%BD%E7%9A%84%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95" target="_self" rel="noopener noreferrer">13.4 插槽的高级用法</a></p> 
+<p id="14.%20%E6%B7%B7%E5%85%A5(Mixins)-toc" name="tableOfContents" style="margin-left:40px"><a href="#14.%20%E6%B7%B7%E5%85%A5%28Mixins%29" target="_self" rel="noopener noreferrer">14. 混入(Mixins)</a></p> 
+<p id="14.1%20%E5%9F%BA%E7%A1%80%E6%B7%B7%E5%85%A5-toc" name="tableOfContents" style="margin-left:80px"><a href="#14.1%20%E5%9F%BA%E7%A1%80%E6%B7%B7%E5%85%A5" target="_self" rel="noopener noreferrer">14.1 基础混入</a></p> 
+<p id="14.2%20%E5%85%A8%E5%B1%80%E6%B7%B7%E5%85%A5-toc" name="tableOfContents" style="margin-left:80px"><a href="#14.2%20%E5%85%A8%E5%B1%80%E6%B7%B7%E5%85%A5" target="_self" rel="noopener noreferrer">14.2 全局混入</a></p> 
+<p id="14.3%20%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6-toc" name="tableOfContents" style="margin-left:80px"><a href="#14.3%20%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6" target="_self" rel="noopener noreferrer">14.3 选项合并</a></p> 
+<p id="14.4%20%E5%AE%9E%E7%94%A8%E6%B7%B7%E5%85%A5%E7%A4%BA%E4%BE%8B-toc" name="tableOfContents" style="margin-left:80px"><a href="#14.4%20%E5%AE%9E%E7%94%A8%E6%B7%B7%E5%85%A5%E7%A4%BA%E4%BE%8B" target="_self" rel="noopener noreferrer">14.4 实用混入示例</a></p> 
+<p id="15.%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4-toc" name="tableOfContents" style="margin-left:40px"><a href="#15.%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4" target="_self" rel="noopener noreferrer">15. 自定义指令</a></p> 
+<p id="15.1%20%E6%8C%87%E4%BB%A4%E5%9F%BA%E7%A1%80-toc" name="tableOfContents" style="margin-left:80px"><a href="#15.1%20%E6%8C%87%E4%BB%A4%E5%9F%BA%E7%A1%80" target="_self" rel="noopener noreferrer">15.1 指令基础</a></p> 
+<p id="15.2%20%E6%8C%87%E4%BB%A4%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0-toc" name="tableOfContents" style="margin-left:80px"><a href="#15.2%20%E6%8C%87%E4%BB%A4%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0" target="_self" rel="noopener noreferrer">15.2 指令钩子函数</a></p> 
+<p id="15.3%20%E6%8C%87%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3-toc" name="tableOfContents" style="margin-left:80px"><a href="#15.3%20%E6%8C%87%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3" target="_self" rel="noopener noreferrer">15.3 指令参数详解</a></p> 
+<p id="15.4%20%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%E7%A4%BA%E4%BE%8B-toc" name="tableOfContents" style="margin-left:80px"><a href="#15.4%20%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%E7%A4%BA%E4%BE%8B" target="_self" rel="noopener noreferrer">15.4 实用指令示例</a></p> 
+<p id="16.%20%E8%BF%87%E6%BB%A4%E5%99%A8-toc" name="tableOfContents" style="margin-left:40px"><a href="#16.%20%E8%BF%87%E6%BB%A4%E5%99%A8" target="_self" rel="noopener noreferrer">16. 过滤器</a></p> 
+<p id="16.1%20%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95-toc" name="tableOfContents" style="margin-left:80px"><a href="#16.1%20%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95" target="_self" rel="noopener noreferrer">16.1 基础用法</a></p> 
+<p id="16.2%20%E8%BF%87%E6%BB%A4%E5%99%A8%E9%93%BE-toc" name="tableOfContents" style="margin-left:80px"><a href="#16.2%20%E8%BF%87%E6%BB%A4%E5%99%A8%E9%93%BE" target="_self" rel="noopener noreferrer">16.2 过滤器链</a></p> 
+<p id="16.3%20%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%82%E6%95%B0-toc" name="tableOfContents" style="margin-left:80px"><a href="#16.3%20%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%82%E6%95%B0" target="_self" rel="noopener noreferrer">16.3 过滤器参数</a></p> 
+<p id="16.4%20%E5%AE%9E%E7%94%A8%E8%BF%87%E6%BB%A4%E5%99%A8%E7%A4%BA%E4%BE%8B-toc" name="tableOfContents" style="margin-left:80px"><a href="#16.4%20%E5%AE%9E%E7%94%A8%E8%BF%87%E6%BB%A4%E5%99%A8%E7%A4%BA%E4%BE%8B" target="_self" rel="noopener noreferrer">16.4 实用过滤器示例</a></p> 
+<p id="17.%20Vue%20Router%E8%B7%AF%E7%94%B1-toc" name="tableOfContents" style="margin-left:40px"><a href="#17.%20Vue%20Router%E8%B7%AF%E7%94%B1" target="_self" rel="noopener noreferrer">17. Vue Router路由</a></p> 
+<p id="17.1%20%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE-toc" name="tableOfContents" style="margin-left:80px"><a href="#17.1%20%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE" target="_self" rel="noopener noreferrer">17.1 路由基础配置</a></p> 
+<p id="17.2%20%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA-toc" name="tableOfContents" style="margin-left:80px"><a href="#17.2%20%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA" target="_self" rel="noopener noreferrer">17.2 路由导航</a></p> 
+<p id="17.3%20%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E8%8E%B7%E5%8F%96-toc" name="tableOfContents" style="margin-left:80px"><a href="#17.3%20%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E8%8E%B7%E5%8F%96" target="_self" rel="noopener noreferrer">17.3 路由参数获取</a></p> 
+<p id="17.4%20%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB-toc" name="tableOfContents" style="margin-left:80px"><a href="#17.4%20%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB" target="_self" rel="noopener noreferrer">17.4 路由守卫</a></p> 
+<p id="17.5%20%E5%91%BD%E5%90%8D%E8%A7%86%E5%9B%BE-toc" name="tableOfContents" style="margin-left:80px"><a href="#17.5%20%E5%91%BD%E5%90%8D%E8%A7%86%E5%9B%BE" target="_self" rel="noopener noreferrer">17.5 命名视图</a></p> 
+<p id="18.%20Vuex%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-toc" name="tableOfContents" style="margin-left:40px"><a href="#18.%20Vuex%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86" target="_self" rel="noopener noreferrer">18. Vuex状态管理</a></p> 
+<p id="18.1%20Vuex%E5%9F%BA%E7%A1%80%E7%BB%93%E6%9E%84-toc" name="tableOfContents" style="margin-left:80px"><a href="#18.1%20Vuex%E5%9F%BA%E7%A1%80%E7%BB%93%E6%9E%84" target="_self" rel="noopener noreferrer">18.1 Vuex基础结构</a></p> 
+<p id="18.2%20%E6%A8%A1%E5%9D%97%E5%8C%96-toc" name="tableOfContents" style="margin-left:80px"><a href="#18.2%20%E6%A8%A1%E5%9D%97%E5%8C%96" target="_self" rel="noopener noreferrer">18.2 模块化</a></p> 
+<p id="18.3%20%E5%9C%A8%E7%BB%84%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8Vuex-toc" name="tableOfContents" style="margin-left:80px"><a href="#18.3%20%E5%9C%A8%E7%BB%84%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8Vuex" target="_self" rel="noopener noreferrer">18.3 在组件中使用Vuex</a></p> 
+<p id="18.4%20Vuex%E6%8F%92%E4%BB%B6-toc" name="tableOfContents" style="margin-left:80px"><a href="#18.4%20Vuex%E6%8F%92%E4%BB%B6" target="_self" rel="noopener noreferrer">18.4 Vuex插件</a></p> 
+<p id="18.5%20%E8%A1%A8%E5%8D%95%E5%A4%84%E7%90%86-toc" name="tableOfContents" style="margin-left:80px"><a href="#18.5%20%E8%A1%A8%E5%8D%95%E5%A4%84%E7%90%86" target="_self" rel="noopener noreferrer">18.5 表单处理</a></p> 
+<p id="19.%20%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-toc" name="tableOfContents" style="margin-left:40px"><a href="#19.%20%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5" target="_self" rel="noopener noreferrer">19. 实战技巧与最佳实践</a></p> 
+<p id="19.1%20%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99-toc" name="tableOfContents" style="margin-left:80px"><a href="#19.1%20%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99" target="_self" rel="noopener noreferrer">19.1 组件设计原则</a></p> 
+<p id="19.2%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-toc" name="tableOfContents" style="margin-left:80px"><a href="#19.2%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96" target="_self" rel="noopener noreferrer">19.2 性能优化</a></p> 
+<p id="19.3%20%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86-toc" name="tableOfContents" style="margin-left:80px"><a href="#19.3%20%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86" target="_self" rel="noopener noreferrer">19.3 错误处理</a></p> 
+<p id="19.4%20%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2%E4%B8%8E%E6%87%92%E5%8A%A0%E8%BD%BD-toc" name="tableOfContents" style="margin-left:80px"><a href="#19.4%20%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2%E4%B8%8E%E6%87%92%E5%8A%A0%E8%BD%BD" target="_self" rel="noopener noreferrer">19.4 代码分割与懒加载</a></p> 
+<p id="19.5%20%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7-toc" name="tableOfContents" style="margin-left:80px"><a href="#19.5%20%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7" target="_self" rel="noopener noreferrer">19.5 开发调试技巧</a></p> 
+<p id="19.6%20%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-toc" name="tableOfContents" style="margin-left:80px"><a href="#19.6%20%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5" target="_self" rel="noopener noreferrer">19.6 项目结构最佳实践</a></p> 
+<p id="19.7%20%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83-toc" name="tableOfContents" style="margin-left:80px"><a href="#19.7%20%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83" target="_self" rel="noopener noreferrer">19.7 代码规范</a></p> 
+<p id="19.8%20%E6%B5%8B%E8%AF%95%E5%BB%BA%E8%AE%AE-toc" name="tableOfContents" style="margin-left:80px"><a href="#19.8%20%E6%B5%8B%E8%AF%95%E5%BB%BA%E8%AE%AE" target="_self" rel="noopener noreferrer">19.8 测试建议</a></p> 
+<p id="%E6%80%BB%E7%BB%93-toc" name="tableOfContents" style="margin-left:40px"><a href="#%E6%80%BB%E7%BB%93" target="_self" rel="noopener noreferrer">总结</a></p> 
+<hr id="hr-toc" name="tableOfContents"> 
+<p></p> 
+<h3 id="1.%20Vue2%E7%AE%80%E4%BB%8B" name="1.%20Vue2%E7%AE%80%E4%BB%8B">1. Vue2简介</h3> 
+<h4 id="1.1%20%E4%BB%80%E4%B9%88%E6%98%AFVue2%EF%BC%9F" name="1.1%20%E4%BB%80%E4%B9%88%E6%98%AFVue2%EF%BC%9F">1.1 什么是Vue2？</h4> 
+<p>Vue2是一个渐进式JavaScript框架，用于构建用户界面。它的核心库只关注视图层，易于上手，同时也便于与第三方库或已有项目整合。</p> 
+<p><strong>Vue2的核心特点：</strong></p> 
+<ul><li><strong>声明式渲染</strong>：用简洁的模板语法来声明式地将数据渲染进DOM</li><li><strong>组件化</strong>：将界面抽象为一个个可复用的组件</li><li><strong>响应式</strong>：数据变化时，视图会自动更新</li><li><strong>渐进式</strong>：可以逐步采用，不需要重写整个应用</li></ul> 
+<h4 id="1.2%20Vue2%E7%9A%84%E4%BC%98%E5%8A%BF" name="1.2%20Vue2%E7%9A%84%E4%BC%98%E5%8A%BF">1.2 Vue2的优势</h4> 
+<pre style="max-height: max-content !important; "><code>// 传统JavaScript操作DOM的方式
+document.getElementById('app').innerHTML = '你好，' + name;
+
+// Vue2的声明式方式
+&lt;template&gt;
+  &lt;div&gt;你好，{<!-- -->{ name }}&lt;/div&gt;
+&lt;/template&gt;
+</code></pre> 
+<p>Vue2让我们从繁琐的DOM操作中解脱出来，专注于数据和逻辑。</p> 
+<hr> 
+<h3 id="2.%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA" name="2.%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA">2. 环境搭建与项目创建</h3> 
+<h4 id="2.1%20%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F" name="2.1%20%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F">2.1 安装方式</h4> 
+<p><strong>方式一：CDN引入（适合学习）</strong></p> 
+<pre style="max-height: max-content !important; "><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/vue@2"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="app"&gt;{<!-- -->{ message }}&lt;/div&gt;
+  &lt;script&gt;
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!'
+      }
+    })
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre> 
+<p><strong>方式二：Vue CLI（推荐用于项目开发）</strong></p> 
+<pre style="max-height: max-content !important; "><code># 安装Vue CLI
+npm install -g @vue/cli
+
+# 创建项目
+vue create my-project
+
+# 启动项目
+cd my-project
+npm run serve
+</code></pre> 
+<h4 id="2.2%20%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90" name="2.2%20%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90">2.2 项目结构解析</h4> 
+<pre style="max-height: max-content !important; "><code>my-project/
+├── public/              # 静态资源目录
+│   ├── index.html      # 主HTML文件
+│   └── favicon.ico     # 网站图标
+├── src/                # 源代码目录
+│   ├── assets/         # 静态资源（会被webpack处理）
+│   ├── components/     # 组件目录
+│   ├── views/          # 页面组件
+│   ├── router/         # 路由配置
+│   ├── store/          # Vuex状态管理
+│   ├── App.vue         # 根组件
+│   └── main.js         # 入口文件
+├── package.json        # 项目配置文件
+└── vue.config.js       # Vue配置文件
+</code></pre> 
+<hr> 
+<h3 id="3.%20Vue%E5%AE%9E%E4%BE%8B%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F" name="3.%20Vue%E5%AE%9E%E4%BE%8B%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">3. Vue实例与生命周期</h3> 
+<h4 id="3.1%20%E5%88%9B%E5%BB%BAVue%E5%AE%9E%E4%BE%8B" name="3.1%20%E5%88%9B%E5%BB%BAVue%E5%AE%9E%E4%BE%8B">3.1 创建Vue实例</h4> 
+<pre style="max-height: max-content !important; "><code>const vm = new Vue({
+  // 选项对象
+  el: '#app',           // 挂载点
+  data: {               // 数据
+    message: 'Hello Vue!'
+  },
+  methods: {            // 方法
+    greet() {
+      alert(this.message)
+    }
+  }
+})
+</code></pre> 
+<p><strong>重要概念解释：</strong></p> 
+<ul><li><code>el</code>：Vue实例挂载的DOM元素</li><li><code>data</code>：Vue实例的数据对象，这些数据是响应式的</li><li><code>methods</code>：定义方法，可以在模板中调用</li></ul> 
+<h4 id="3.2%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%AF%A6%E8%A7%A3" name="3.2%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%AF%A6%E8%A7%A3">3.2 生命周期详解</h4> 
+<p>Vue实例从创建到销毁会经历一系列的生命周期钩子：</p> 
+<pre style="max-height: max-content !important; "><code>new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello'
+  },
+  
+  // 实例初始化之后，数据观测之前调用
+  beforeCreate() {
+    console.log('beforeCreate: 实例刚创建，data还未初始化')
+  },
+  
+  // 实例已经创建完成，data已初始化
+  created() {
+    console.log('created: 数据初始化完成，可以访问data')
+    // 适合：发送网络请求、初始化数据
+  },
+  
+  // 挂载开始之前调用
+  beforeMount() {
+    console.log('beforeMount: 模板编译完成，即将挂载到DOM')
+  },
+  
+  // 实例挂载完成
+  mounted() {
+    console.log('mounted: DOM挂载完成，可以访问DOM元素')
+    // 适合：操作DOM、启动定时器、绑定自定义事件
+  },
+  
+  // 数据更新前调用
+  beforeUpdate() {
+    console.log('beforeUpdate: 数据更新前')
+  },
+  
+  // 数据更新后调用
+  updated() {
+    console.log('updated: 数据更新后，DOM已重新渲染')
+  },
+  
+  // 实例销毁前调用
+  beforeDestroy() {
+    console.log('beforeDestroy: 实例销毁前')
+    // 适合：清理定时器、解绑事件、清理订阅
+  },
+  
+  // 实例销毁后调用
+  destroyed() {
+    console.log('destroyed: 实例已销毁')
+  }
+})
+</code></pre> 
+<p><strong>生命周期应用场景：</strong></p> 
+<ul><li><code>created</code>：发送Ajax请求获取数据</li><li><code>mounted</code>：操作DOM、初始化第三方插件</li><li><code>beforeDestroy</code>：清理工作，防止内存泄漏</li></ul> 
+<hr> 
+<h3 id="4.%20%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95" name="4.%20%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95">4. 模板语法</h3> 
+<h4 id="4.1%20%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F" name="4.1%20%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F">4.1 插值表达式</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 文本插值 --&gt;
+&lt;div&gt;{<!-- -->{ message }}&lt;/div&gt;
+
+&lt;!-- 表达式 --&gt;
+&lt;div&gt;{<!-- -->{ number + 1 }}&lt;/div&gt;
+&lt;div&gt;{<!-- -->{ ok ? 'YES' : 'NO' }}&lt;/div&gt;
+&lt;div&gt;{<!-- -->{ message.split('').reverse().join('') }}&lt;/div&gt;
+
+&lt;!-- 调用方法 --&gt;
+&lt;div&gt;{<!-- -->{ formatDate(date) }}&lt;/div&gt;
+</code></pre> 
+<p><strong>注意事项：</strong></p> 
+<ul><li>插值表达式只能包含单个表达式</li><li>不能使用语句（如if语句）</li><li>不能访问全局变量（如window）</li></ul> 
+<h4 id="4.2%20%E5%8E%9F%E5%A7%8BHTML" name="4.2%20%E5%8E%9F%E5%A7%8BHTML">4.2 原始HTML</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 会被转义，显示HTML标签 --&gt;
+    &lt;p&gt;{<!-- -->{ rawHtml }}&lt;/p&gt;
+    
+    &lt;!-- 不会被转义，渲染为HTML --&gt;
+    &lt;p v-html="rawHtml"&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      rawHtml: '&lt;span style="color: red"&gt;这是红色文字&lt;/span&gt;'
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<p>**安全提醒：**永远不要对用户提供的内容使用v-html，这可能导致XSS攻击。</p> 
+<h4 id="4.3%20%E5%B1%9E%E6%80%A7%E7%BB%91%E5%AE%9A" name="4.3%20%E5%B1%9E%E6%80%A7%E7%BB%91%E5%AE%9A">4.3 属性绑定</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 绑定属性 --&gt;
+&lt;div v-bind:id="dynamicId"&gt;&lt;/div&gt;
+&lt;div v-bind:class="className"&gt;&lt;/div&gt;
+
+&lt;!-- 简写形式 --&gt;
+&lt;div :id="dynamicId"&gt;&lt;/div&gt;
+&lt;div :class="className"&gt;&lt;/div&gt;
+
+&lt;!-- 动态属性名 --&gt;
+&lt;div :[attributeName]="value"&gt;&lt;/div&gt;
+</code></pre> 
+<hr> 
+<h3 id="5.%20%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3" name="5.%20%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3">5. 指令详解</h3> 
+<h4 id="5.1%20v-if%20%2F%20v-else%20%2F%20v-else-if" name="5.1%20v-if%20%2F%20v-else%20%2F%20v-else-if">5.1 v-if / v-else / v-else-if</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;div v-if="type === 'A'"&gt;A类型&lt;/div&gt;
+    &lt;div v-else-if="type === 'B'"&gt;B类型&lt;/div&gt;
+    &lt;div v-else&gt;其他类型&lt;/div&gt;
+    
+    &lt;!-- template标签不会渲染到DOM中 --&gt;
+    &lt;template v-if="loginType === 'username'"&gt;
+      &lt;label&gt;用户名&lt;/label&gt;
+      &lt;input placeholder="输入用户名" key="username-input"&gt;
+    &lt;/template&gt;
+    &lt;template v-else&gt;
+      &lt;label&gt;邮箱&lt;/label&gt;
+      &lt;input placeholder="输入邮箱" key="email-input"&gt;
+    &lt;/template&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre> 
+<p><strong>v-if vs v-show的区别：</strong></p> 
+<ul><li><code>v-if</code>：条件性渲染，条件为false时元素不存在于DOM中</li><li><code>v-show</code>：始终渲染，只是通过CSS的display控制显示隐藏</li></ul> 
+<h4 id="5.2%20v-for" name="5.2%20v-for">5.2 v-for</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 遍历数组 --&gt;
+    &lt;li v-for="(item, index) in items" :key="item.id"&gt;
+      {<!-- -->{ index }} - {<!-- -->{ item.name }}
+    &lt;/li&gt;
+    
+    &lt;!-- 遍历对象 --&gt;
+    &lt;li v-for="(value, key, index) in object" :key="key"&gt;
+      {<!-- -->{ index }}. {<!-- -->{ key }}: {<!-- -->{ value }}
+    &lt;/li&gt;
+    
+    &lt;!-- 遍历数字 --&gt;
+    &lt;span v-for="n in 10" :key="n"&gt;{<!-- -->{ n }}&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      items: [
+        { id: 1, name: '苹果' },
+        { id: 2, name: '香蕉' }
+      ],
+      object: {
+        title: 'How to do lists in Vue',
+        author: 'Jane Doe',
+        publishedAt: '2016-04-10'
+      }
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<p>**重要提醒：**始终为v-for提供key属性，且key应该是唯一的标识符。</p> 
+<h4 id="5.3%20v-model" name="5.3%20v-model">5.3 v-model</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 输入框 --&gt;
+    &lt;input v-model="message" placeholder="请输入"&gt;
+    &lt;p&gt;{<!-- -->{ message }}&lt;/p&gt;
+    
+    &lt;!-- 复选框 --&gt;
+    &lt;input type="checkbox" v-model="checked"&gt;
+    &lt;label&gt;{<!-- -->{ checked }}&lt;/label&gt;
+    
+    &lt;!-- 单选框 --&gt;
+    &lt;input type="radio" value="A" v-model="picked"&gt;
+    &lt;input type="radio" value="B" v-model="picked"&gt;
+    &lt;span&gt;选择：{<!-- -->{ picked }}&lt;/span&gt;
+    
+    &lt;!-- 选择框 --&gt;
+    &lt;select v-model="selected"&gt;
+      &lt;option disabled value=""&gt;请选择&lt;/option&gt;
+      &lt;option&gt;A&lt;/option&gt;
+      &lt;option&gt;B&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre> 
+<p><strong>v-model修饰符：</strong></p> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 在"change"时而非"input"时更新 --&gt;
+&lt;input v-model.lazy="msg"&gt;
+
+&lt;!-- 自动将用户的输入值转为数值类型 --&gt;
+&lt;input v-model.number="age" type="number"&gt;
+
+&lt;!-- 自动过滤用户输入的首尾空白字符 --&gt;
+&lt;input v-model.trim="msg"&gt;
+</code></pre> 
+<h4 id="5.4%20%E4%BA%8B%E4%BB%B6%E6%8C%87%E4%BB%A4%20v-on" name="5.4%20%E4%BA%8B%E4%BB%B6%E6%8C%87%E4%BB%A4%20v-on">5.4 事件指令 v-on</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 完整语法 --&gt;
+    &lt;button v-on:click="doThis"&gt;点击我&lt;/button&gt;
+    
+    &lt;!-- 缩写 --&gt;
+    &lt;button @click="doThis"&gt;点击我&lt;/button&gt;
+    
+    &lt;!-- 传递参数 --&gt;
+    &lt;button @click="say('hi')"&gt;Say hi&lt;/button&gt;
+    
+    &lt;!-- 访问原始DOM事件 --&gt;
+    &lt;button @click="warn('Form cannot be submitted yet.', $event)"&gt;
+      Submit
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  methods: {
+    doThis() {
+      console.log('按钮被点击了')
+    },
+    say(message) {
+      alert(message)
+    },
+    warn(message, event) {
+      if (event) {
+        event.preventDefault()
+      }
+      alert(message)
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<p><strong>事件修饰符：</strong></p> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 阻止单击事件继续传播 --&gt;
+&lt;a @click.stop="doThis"&gt;&lt;/a&gt;
+
+&lt;!-- 提交事件不再重载页面 --&gt;
+&lt;form @submit.prevent="onSubmit"&gt;&lt;/form&gt;
+
+&lt;!-- 修饰符可以串联 --&gt;
+&lt;a @click.stop.prevent="doThat"&gt;&lt;/a&gt;
+
+&lt;!-- 只有修饰符 --&gt;
+&lt;form @submit.prevent&gt;&lt;/form&gt;
+
+&lt;!-- 添加事件监听器时使用事件捕获模式 --&gt;
+&lt;div @click.capture="doThis"&gt;...&lt;/div&gt;
+
+&lt;!-- 只当在 event.target 是当前元素自身时触发处理函数 --&gt;
+&lt;div @click.self="doThat"&gt;...&lt;/div&gt;
+
+&lt;!-- 点击事件将只会触发一次 --&gt;
+&lt;a @click.once="doThis"&gt;&lt;/a&gt;
+</code></pre> 
+<hr> 
+<h3 id="6.%20%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E4%B8%8E%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86" name="6.%20%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E4%B8%8E%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86">6. 数据绑定与响应式原理</h3> 
+<h4 id="6.1%20%E5%93%8D%E5%BA%94%E5%BC%8F%E6%95%B0%E6%8D%AE" name="6.1%20%E5%93%8D%E5%BA%94%E5%BC%8F%E6%95%B0%E6%8D%AE">6.1 响应式数据</h4> 
+<pre style="max-height: max-content !important; "><code>export default {
+  data() {
+    return {
+      // 这些数据都是响应式的
+      message: 'Hello',
+      user: {
+        name: '张三',
+        age: 25
+      },
+      items: ['苹果', '香蕉']
+    }
+  },
+  created() {
+    // 修改响应式数据会触发视图更新
+    this.message = 'Hi'
+    this.user.name = '李四'
+    this.items.push('橙子')
+  }
+}
+</code></pre> 
+<h4 id="6.2%20%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E7%AE%80%E8%A7%A3" name="6.2%20%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E7%AE%80%E8%A7%A3">6.2 响应式原理简解</h4> 
+<p>Vue2使用<code>Object.defineProperty</code>来实现响应式：</p> 
+<pre style="max-height: max-content !important; "><code>// Vue2响应式原理简化版
+function defineReactive(obj, key, val) {
+  Object.defineProperty(obj, key, {
+    get() {
+      console.log(`获取${key}: ${val}`)
+      return val
+    },
+    set(newVal) {
+      if (newVal !== val) {
+        console.log(`设置${key}: ${newVal}`)
+        val = newVal
+        // 触发视图更新
+        updateView()
+      }
+    }
+  })
+}
+
+function updateView() {
+  console.log('视图更新了')
+}
+</code></pre> 
+<h4 id="6.3%20%E5%93%8D%E5%BA%94%E5%BC%8F%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9" name="6.3%20%E5%93%8D%E5%BA%94%E5%BC%8F%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">6.3 响应式注意事项</h4> 
+<pre style="max-height: max-content !important; "><code>export default {
+  data() {
+    return {
+      user: {
+        name: '张三'
+      },
+      items: ['苹果']
+    }
+  },
+  methods: {
+    addProperty() {
+      // ❌ 直接添加属性不是响应式的
+      this.user.age = 25
+      
+      // ✅ 使用Vue.set添加响应式属性
+      this.$set(this.user, 'age', 25)
+    },
+    updateArray() {
+      // ❌ 直接索引赋值不是响应式的
+      this.items[0] = '香蕉'
+      
+      // ✅ 使用数组方法或Vue.set
+      this.$set(this.items, 0, '香蕉')
+      // 或者
+      this.items.splice(0, 1, '香蕉')
+    }
+  }
+}
+</code></pre> 
+<hr> 
+<h3 id="7.%20%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86" name="7.%20%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86">7. 事件处理</h3> 
+<h4 id="7.1%20%E5%9F%BA%E7%A1%80%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86" name="7.1%20%E5%9F%BA%E7%A1%80%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86">7.1 基础事件处理</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 内联处理器 --&gt;
+    &lt;button @click="counter += 1"&gt;Add 1&lt;/button&gt;
+    &lt;p&gt;按钮被点击了 {<!-- -->{ counter }} 次&lt;/p&gt;
+    
+    &lt;!-- 方法处理器 --&gt;
+    &lt;button @click="greet"&gt;Greet&lt;/button&gt;
+    
+    &lt;!-- 传递参数 --&gt;
+    &lt;button @click="say('hello')"&gt;Say hello&lt;/button&gt;
+    &lt;button @click="say('goodbye')"&gt;Say goodbye&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      counter: 0,
+      name: 'Vue.js'
+    }
+  },
+  methods: {
+    greet(event) {
+      alert('Hello ' + this.name + '!')
+      // event 是原生 DOM 事件
+      if (event) {
+        alert(event.target.tagName)
+      }
+    },
+    say(message) {
+      alert(message)
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<h4 id="7.2%20%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6" name="7.2%20%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6">7.2 键盘事件</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 键码 --&gt;
+    &lt;input @keyup.13="submit"&gt;
+    
+    &lt;!-- 键名 --&gt;
+    &lt;input @keyup.enter="submit"&gt;
+    &lt;input @keyup.page-down="onPageDown"&gt;
+    
+    &lt;!-- 组合键 --&gt;
+    &lt;input @keyup.ctrl.67="copy"&gt;
+    &lt;input @click.ctrl="doSomething"&gt;
+    
+    &lt;!-- 精确修饰符 --&gt;
+    &lt;button @click.ctrl.exact="onCtrlClick"&gt;A&lt;/button&gt;
+    &lt;button @click.exact="onClick"&gt;A&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  methods: {
+    submit() {
+      console.log('提交表单')
+    },
+    onPageDown() {
+      console.log('Page Down 键被按下')
+    },
+    copy() {
+      console.log('Ctrl + C 被按下')
+    },
+    doSomething() {
+      console.log('Ctrl + 点击')
+    },
+    onCtrlClick() {
+      console.log('只有Ctrl被按下时的点击')
+    },
+    onClick() {
+      console.log('没有任何修饰键的点击')
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<h4 id="7.3%20%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6" name="7.3%20%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6">7.3 自定义事件</h4> 
+<pre style="max-height: max-content !important; "><code>// 子组件
+export default {
+  name: 'ChildComponent',
+  methods: {
+    handleClick() {
+      // 触发自定义事件
+      this.$emit('custom-event', '传递的数据')
+    }
+  }
+}
+
+// 父组件
+export default {
+  methods: {
+    handleCustomEvent(data) {
+      console.log('收到子组件的数据:', data)
+    }
+  }
+}
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 父组件模板 --&gt;
+&lt;child-component @custom-event="handleCustomEvent"&gt;&lt;/child-component&gt;
+</code></pre> 
+<hr> 
+<h3 id="8.%20%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E4%B8%8E%E4%BE%A6%E5%90%AC%E5%99%A8" name="8.%20%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E4%B8%8E%E4%BE%A6%E5%90%AC%E5%99%A8">8. 计算属性与侦听器</h3> 
+<h4 id="8.1%20%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%20computed" name="8.1%20%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%20computed">8.1 计算属性 computed</h4> 
+<pre style="max-height: max-content !important; "><code>export default {
+  data() {
+    return {
+      firstName: 'Foo',
+      lastName: 'Bar',
+      items: [
+        { id: 1, name: '苹果', price: 10, quantity: 2 },
+        { id: 2, name: '香蕉', price: 5, quantity: 3 }
+      ]
+    }
+  },
+  computed: {
+    // 基础计算属性
+    fullName() {
+      return this.firstName + ' ' + this.lastName
+    },
+    
+    // 计算属性会基于响应式依赖进行缓存
+    totalPrice() {
+      console.log('计算总价') // 只有相关数据变化时才会重新计算
+      return this.items.reduce((total, item) =&gt; {
+        return total + item.price * item.quantity
+      }, 0)
+    },
+    
+    // 可读写的计算属性
+    fullNameWritable: {
+      get() {
+        return this.firstName + ' ' + this.lastName
+      },
+      set(newValue) {
+        const names = newValue.split(' ')
+        this.firstName = names[0]
+        this.lastName = names[names.length - 1]
+      }
+    }
+  }
+}
+</code></pre> 
+<p><strong>计算属性 vs 方法的区别：</strong></p> 
+<ul><li>计算属性基于响应式依赖进行缓存，只有依赖发生改变时才会重新求值</li><li>方法每次调用都会执行函数</li></ul> 
+<h4 id="8.2%20%E4%BE%A6%E5%90%AC%E5%99%A8%20watch" name="8.2%20%E4%BE%A6%E5%90%AC%E5%99%A8%20watch">8.2 侦听器 watch</h4> 
+<pre style="max-height: max-content !important; "><code>export default {
+  data() {
+    return {
+      question: '',
+      answer: 'I cannot give you an answer until you ask a question!',
+      user: {
+        name: '张三',
+        profile: {
+          age: 25
+        }
+      }
+    }
+  },
+  watch: {
+    // 侦听基础数据类型
+    question(newQuestion, oldQuestion) {
+      this.answer = 'Waiting for you to stop typing...'
+      this.debouncedGetAnswer()
+    },
+    
+    // 侦听对象属性变化（浅侦听）
+    'user.name'(newName, oldName) {
+      console.log(`用户名从 ${oldName} 改为 ${newName}`)
+    },
+    
+    // 深度侦听
+    user: {
+      handler(newUser, oldUser) {
+        console.log('用户对象发生了变化')
+      },
+      deep: true
+    },
+    
+    // 立即执行
+    question: {
+      handler(val) {
+        console.log('question changed:', val)
+      },
+      immediate: true
+    }
+  },
+  created() {
+    // 使用 lodash 的防抖函数
+    this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+  },
+  methods: {
+    getAnswer() {
+      if (this.question.indexOf('?') === -1) {
+        this.answer = 'Questions usually contain a question mark. ;-)'
+        return
+      }
+      this.answer = 'Thinking...'
+      // 模拟API调用
+      setTimeout(() =&gt; {
+        this.answer = 'Yes, it is a good question!'
+      }, 1000)
+    }
+  }
+}
+</code></pre> 
+<h4 id="8.3%20%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%20vs%20%E4%BE%A6%E5%90%AC%E5%99%A8" name="8.3%20%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%20vs%20%E4%BE%A6%E5%90%AC%E5%99%A8">8.3 计算属性 vs 侦听器</h4> 
+<pre style="max-height: max-content !important; "><code>export default {
+  data() {
+    return {
+      firstName: 'Foo',
+      lastName: 'Bar'
+    }
+  },
+  
+  // ✅ 推荐：使用计算属性
+  computed: {
+    fullName() {
+      return this.firstName + ' ' + this.lastName
+    }
+  },
+  
+  // ❌ 不推荐：使用侦听器实现同样的功能
+  watch: {
+    firstName(val) {
+      this.fullName = val + ' ' + this.lastName
+    },
+    lastName(val) {
+      this.fullName = this.firstName + ' ' + val
+    }
+  }
+}
+</code></pre> 
+<p><strong>选择建议：</strong></p> 
+<ul><li>需要基于现有数据计算新数据时，使用<strong>计算属性</strong></li><li>需要在数据变化时执行异步操作或开销较大的操作时，使用<strong>侦听器</strong></li></ul> 
+<hr> 
+<h3 id="9.%20%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E4%B8%8E%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93" name="9.%20%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E4%B8%8E%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93">9. 条件渲染与列表渲染</h3> 
+<h4 id="9.1%20%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95" name="9.1%20%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95">9.1 条件渲染高级用法</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- v-if 在template上 --&gt;
+    &lt;template v-if="loginType === 'username'"&gt;
+      &lt;label&gt;Username&lt;/label&gt;
+      &lt;input placeholder="Enter your username" key="username-input"&gt;
+    &lt;/template&gt;
+    &lt;template v-else&gt;
+      &lt;label&gt;Email&lt;/label&gt;
+      &lt;input placeholder="Enter your email address" key="email-input"&gt;
+    &lt;/template&gt;
+    
+    &lt;!-- 用key管理可复用的元素 --&gt;
+    &lt;div v-if="showName" key="name"&gt;
+      &lt;label&gt;姓名&lt;/label&gt;
+      &lt;input&gt;
+    &lt;/div&gt;
+    &lt;div v-else key="email"&gt;
+      &lt;label&gt;邮箱&lt;/label&gt;
+      &lt;input&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- v-show --&gt;
+    &lt;h1 v-show="ok"&gt;Hello!&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      loginType: 'username',
+      showName: true,
+      ok: true
+    }
+  },
+  methods: {
+    toggleLoginType() {
+      this.loginType = this.loginType === 'username' ? 'email' : 'username'
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<h4 id="9.2%20%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93%E8%BF%9B%E9%98%B6" name="9.2%20%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93%E8%BF%9B%E9%98%B6">9.2 列表渲染进阶</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 基础列表渲染 --&gt;
+    &lt;ul&gt;
+      &lt;li v-for="item in items" :key="item.id"&gt;
+        {<!-- -->{ item.message }}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;!-- 嵌套循环 --&gt;
+    &lt;ul&gt;
+      &lt;li v-for="item in items" :key="item.id"&gt;
+        {<!-- -->{ item.message }}
+        &lt;ul&gt;
+          &lt;li v-for="subItem in item.children" :key="subItem.id"&gt;
+            {<!-- -->{ subItem.name }}
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;!-- 在组件上使用v-for --&gt;
+    &lt;my-component
+      v-for="item in items"
+      :key="item.id"
+      :item="item"&gt;
+    &lt;/my-component&gt;
+    
+    &lt;!-- 数组更新检测 --&gt;
+    &lt;button @click="addItem"&gt;添加项目&lt;/button&gt;
+    &lt;button @click="removeItem"&gt;删除项目&lt;/button&gt;
+    &lt;button @click="updateItem"&gt;更新项目&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      items: [
+        { 
+          id: 1, 
+          message: 'Foo',
+          children: [
+            { id: 11, name: 'Child 1' },
+            { id: 12, name: 'Child 2' }
+          ]
+        },
+        { 
+          id: 2, 
+          message: 'Bar',
+          children: [
+            { id: 21, name: 'Child 3' }
+          ]
+        }
+      ]
+    }
+  },
+  methods: {
+    addItem() {
+      this.items.push({
+        id: Date.now(),
+        message: 'New Item',
+        children: []
+      })
+    },
+    removeItem() {
+      this.items.pop()
+    },
+    updateItem() {
+      // ✅ 触发更新的方法
+      this.items.splice(0, 1, { 
+        id: 999, 
+        message: 'Updated Item',
+        children: []
+      })
+      
+      // ❌ 不会触发更新
+      // this.items[0] = { id: 999, message: 'Updated Item' }
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<h4 id="9.3%20%E6%95%B0%E7%BB%84%E5%8F%98%E6%9B%B4%E6%96%B9%E6%B3%95" name="9.3%20%E6%95%B0%E7%BB%84%E5%8F%98%E6%9B%B4%E6%96%B9%E6%B3%95">9.3 数组变更方法</h4> 
+<p>Vue包装了数组的变更方法，这些方法会触发视图更新：</p> 
+<pre style="max-height: max-content !important; "><code>export default {
+  data() {
+    return {
+      items: ['苹果', '香蕉', '橙子']
+    }
+  },
+  methods: {
+    // 变更方法（会改变原数组）
+    pushItem() {
+      this.items.push('葡萄')
+    },
+    popItem() {
+      this.items.pop()
+    },
+    shiftItem() {
+      this.items.shift()
+    },
+    unshiftItem() {
+      this.items.unshift('柠檬')
+    },
+    spliceItems() {
+      this.items.splice(1, 1, '西瓜')
+    },
+    sortItems() {
+      this.items.sort()
+    },
+    reverseItems() {
+      this.items.reverse()
+    },
+    
+    // 替换数组（返回新数组）
+    filterItems() {
+      this.items = this.items.filter(item =&gt; item.includes('果'))
+    },
+    concatItems() {
+      this.items = this.items.concat(['芒果', '草莓'])
+    },
+    sliceItems() {
+      this.items = this.items.slice(0, 2)
+    }
+  }
+}
+</code></pre> 
+<hr> 
+<h3 id="10.%20%E8%A1%A8%E5%8D%95%E8%BE%93%E5%85%A5%E7%BB%91%E5%AE%9A" name="10.%20%E8%A1%A8%E5%8D%95%E8%BE%93%E5%85%A5%E7%BB%91%E5%AE%9A">10. 表单输入绑定</h3> 
+<h4 id="10.1%20%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95" name="10.1%20%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95">10.1 基础用法</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 文本输入 --&gt;
+    &lt;div&gt;
+      &lt;label&gt;消息：&lt;/label&gt;
+      &lt;input v-model="message" placeholder="请输入消息"&gt;
+      &lt;p&gt;消息是：{<!-- -->{ message }}&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- 多行文本 --&gt;
+    &lt;div&gt;
+      &lt;label&gt;多行消息：&lt;/label&gt;
+      &lt;textarea v-model="multilineMessage" placeholder="请输入多行消息"&gt;&lt;/textarea&gt;
+      &lt;p style="white-space: pre-line;"&gt;{<!-- -->{ multilineMessage }}&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- 复选框 --&gt;
+    &lt;div&gt;
+      &lt;input type="checkbox" id="checkbox" v-model="checked"&gt;
+      &lt;label for="checkbox"&gt;{<!-- -->{ checked }}&lt;/label&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- 多个复选框 --&gt;
+    &lt;div&gt;
+      &lt;input type="checkbox" id="jack" value="Jack" v-model="checkedNames"&gt;
+      &lt;label for="jack"&gt;Jack&lt;/label&gt;
+      &lt;input type="checkbox" id="john" value="John" v-model="checkedNames"&gt;
+      &lt;label for="john"&gt;John&lt;/label&gt;
+      &lt;input type="checkbox" id="mike" value="Mike" v-model="checkedNames"&gt;
+      &lt;label for="mike"&gt;Mike&lt;/label&gt;
+      &lt;br&gt;
+      &lt;span&gt;选中的名字：{<!-- -->{ checkedNames }}&lt;/span&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- 单选按钮 --&gt;
+    &lt;div&gt;
+      &lt;input type="radio" id="one" value="One" v-model="picked"&gt;
+      &lt;label for="one"&gt;One&lt;/label&gt;
+      &lt;input type="radio" id="two" value="Two" v-model="picked"&gt;
+      &lt;label for="two"&gt;Two&lt;/label&gt;
+      &lt;br&gt;
+      &lt;span&gt;选中：{<!-- -->{ picked }}&lt;/span&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- 选择框 --&gt;
+    &lt;div&gt;
+      &lt;select v-model="selected"&gt;
+        &lt;option disabled value=""&gt;请选择&lt;/option&gt;
+        &lt;option&gt;A&lt;/option&gt;
+        &lt;option&gt;B&lt;/option&gt;
+        &lt;option&gt;C&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;span&gt;选中：{<!-- -->{ selected }}&lt;/span&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- 多选框 --&gt;
+    &lt;div&gt;
+      &lt;select v-model="selectedMultiple" multiple style="width: 50px;"&gt;
+        &lt;option&gt;A&lt;/option&gt;
+        &lt;option&gt;B&lt;/option&gt;
+        &lt;option&gt;C&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;br&gt;
+      &lt;span&gt;选中：{<!-- -->{ selectedMultiple }}&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      message: '',
+      multilineMessage: '',
+      checked: false,
+      checkedNames: [],
+      picked: '',
+      selected: '',
+      selectedMultiple: []
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<h4 id="10.2%20%E5%80%BC%E7%BB%91%E5%AE%9A" name="10.2%20%E5%80%BC%E7%BB%91%E5%AE%9A">10.2 值绑定</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 复选框的值绑定 --&gt;
+    &lt;input
+      type="checkbox"
+      v-model="toggle"
+      true-value="yes"
+      false-value="no"&gt;
+    &lt;span&gt;当前值：{<!-- -->{ toggle }}&lt;/span&gt;
+    
+    &lt;!-- 单选框的值绑定 --&gt;
+    &lt;input type="radio" v-model="pick" :value="a"&gt;
+    &lt;span&gt;选中值：{<!-- -->{ pick }}&lt;/span&gt;
+    
+    &lt;!-- 选择框的值绑定 --&gt;
+    &lt;select v-model="selectedObject"&gt;
+      &lt;option v-for="option in options" :key="option.value" :value="option"&gt;
+        {<!-- -->{ option.text }}
+      &lt;/option&gt;
+    &lt;/select&gt;
+    &lt;span&gt;选中对象：{<!-- -->{ selectedObject }}&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      toggle: 'no',
+      pick: '',
+      a: 'a的值',
+      selectedObject: {},
+      options: [
+        { text: 'One', value: 'A' },
+        { text: 'Two', value: 'B' },
+        { text: 'Three', value: 'C' }
+      ]
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<h4 id="10.3%20%E4%BF%AE%E9%A5%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3" name="10.3%20%E4%BF%AE%E9%A5%B0%E7%AC%A6%E8%AF%A6%E8%A7%A3">10.3 修饰符详解</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- .lazy 修饰符 --&gt;
+    &lt;input v-model.lazy="msg" placeholder="失去焦点时更新"&gt;
+    &lt;p&gt;消息：{<!-- -->{ msg }}&lt;/p&gt;
+    
+    &lt;!-- .number 修饰符 --&gt;
+    &lt;input v-model.number="age" type="number" placeholder="输入年龄"&gt;
+    &lt;p&gt;年龄类型：{<!-- -->{ typeof age }}，值：{<!-- -->{ age }}&lt;/p&gt;
+    
+    &lt;!-- .trim 修饰符 --&gt;
+    &lt;input v-model.trim="trimmedMsg" placeholder="自动去除首尾空格"&gt;
+    &lt;p&gt;去空格后：'{<!-- -->{ trimmedMsg }}'&lt;/p&gt;
+    
+    &lt;!-- 组合使用修饰符 --&gt;
+    &lt;input v-model.lazy.trim="combinedMsg" placeholder="组合修饰符"&gt;
+    &lt;p&gt;组合结果：'{<!-- -->{ combinedMsg }}'&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      msg: '',
+      age: null,
+      trimmedMsg: '',
+      combinedMsg: ''
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<hr> 
+<h3 id="11.%20%E7%BB%84%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AF%A6%E8%A7%A3" name="11.%20%E7%BB%84%E4%BB%B6%E7%B3%BB%E7%BB%9F%E8%AF%A6%E8%A7%A3">11. 组件系统详解</h3> 
+<h4 id="11.1%20%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80" name="11.1%20%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80">11.1 组件基础</h4> 
+<pre style="max-height: max-content !important; "><code>// 全局注册组件
+Vue.component('button-counter', {
+  data() {
+    return {
+      count: 0
+    }
+  },
+  template: `
+    &lt;button @click="count++"&gt;
+      You clicked me {<!-- -->{ count }} times.
+    &lt;/button&gt;
+  `
+})
+
+// 局部注册组件
+export default {
+  components: {
+    'component-a': ComponentA,
+    'component-b': ComponentB
+  }
+}
+</code></pre> 
+<h4 id="11.2%20%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6" name="11.2%20%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6">11.2 单文件组件</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- MyComponent.vue --&gt;
+&lt;template&gt;
+  &lt;div class="my-component"&gt;
+    &lt;h1&gt;{<!-- -->{ title }}&lt;/h1&gt;
+    &lt;p&gt;{<!-- -->{ description }}&lt;/p&gt;
+    &lt;button @click="handleClick"&gt;{<!-- -->{ buttonText }}&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'MyComponent',
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      default: '默认描述'
+    },
+    buttonText: {
+      type: String,
+      default: '点击我'
+    }
+  },
+  data() {
+    return {
+      localData: '组件内部数据'
+    }
+  },
+  methods: {
+    handleClick() {
+      this.$emit('button-clicked', this.localData)
+    }
+  }
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.my-component {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+&lt;/style&gt;
+</code></pre> 
+<h4 id="11.3%20Props%E8%AF%A6%E8%A7%A3" name="11.3%20Props%E8%AF%A6%E8%A7%A3">11.3 Props详解</h4> 
+<pre style="max-height: max-content !important; "><code>export default {
+  name: 'PropsDemo',
+  props: {
+    // 基础类型检查
+    propA: Number,
+    
+    // 多个可能的类型
+    propB: [String, Number],
+    
+    // 必填的字符串
+    propC: {
+      type: String,
+      required: true
+    },
+    
+    // 带有默认值的数字
+    propD: {
+      type: Number,
+      default: 100
+    },
+    
+    // 带有默认值的对象
+    propE: {
+      type: Object,
+      default() {
+        return { message: 'hello' }
+      }
+    },
+    
+    // 自定义验证函数
+    propF: {
+      validator(value) {
+        return ['success', 'warning', 'danger'].includes(value)
+      }
+    },
+    
+    // 具有默认值的函数
+    propG: {
+      type: Function,
+      default() {
+        return 'Default function'
+      }
+    }
+  },
+  created() {
+    console.log('Props:', this.$props)
+  }
+}
+</code></pre> 
+<p><strong>Props使用示例：</strong></p> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 父组件 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;props-demo
+      :prop-a="42"
+      prop-b="hello"
+      prop-c="required string"
+      :prop-e="{ message: 'custom message' }"
+      prop-f="success"
+      :prop-g="customFunction"&gt;
+    &lt;/props-demo&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  methods: {
+    customFunction() {
+      return 'Custom function result'
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<h4 id="11.4%20%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6" name="11.4%20%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6">11.4 自定义事件</h4> 
+<pre style="max-height: max-content !important; "><code>// 子组件
+export default {
+  name: 'ChildComponent',
+  props: ['value'],
+  data() {
+    return {
+      internalValue: this.value
+    }
+  },
+  watch: {
+    value(newVal) {
+      this.internalValue = newVal
+    },
+    internalValue(newVal) {
+      this.$emit('input', newVal)
+    }
+  },
+  methods: {
+    updateValue() {
+      this.internalValue = 'Updated value'
+    },
+    customEvent() {
+      this.$emit('custom-event', {
+        message: 'Hello from child',
+        timestamp: Date.now()
+      })
+    }
+  }
+}
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 父组件 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- v-model 的语法糖 --&gt;
+    &lt;child-component v-model="parentValue"&gt;&lt;/child-component&gt;
+    
+    &lt;!-- 等价于 --&gt;
+    &lt;child-component
+      :value="parentValue"
+      @input="parentValue = $event"&gt;
+    &lt;/child-component&gt;
+    
+    &lt;!-- 监听自定义事件 --&gt;
+    &lt;child-component @custom-event="handleCustomEvent"&gt;&lt;/child-component&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      parentValue: 'Initial value'
+    }
+  },
+  methods: {
+    handleCustomEvent(payload) {
+      console.log('收到自定义事件:', payload)
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<hr> 
+<h3 id="12.%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1" name="12.%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1">12. 组件通信</h3> 
+<h4 id="12.1%20%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1" name="12.1%20%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1">12.1 父子组件通信</h4> 
+<pre style="max-height: max-content !important; "><code>// 父组件
+export default {
+  name: 'ParentComponent',
+  data() {
+    return {
+      parentMessage: 'Hello from parent',
+      childData: ''
+    }
+  },
+  methods: {
+    handleChildEvent(data) {
+      this.childData = data
+      console.log('收到子组件数据:', data)
+    },
+    
+    // 通过 $refs 直接调用子组件方法
+    callChildMethod() {
+      this.$refs.child.childMethod()
+    }
+  }
+}
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 父组件模板 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h2&gt;父组件&lt;/h2&gt;
+    &lt;p&gt;来自子组件的数据: {<!-- -->{ childData }}&lt;/p&gt;
+    &lt;button @click="callChildMethod"&gt;调用子组件方法&lt;/button&gt;
+    
+    &lt;child-component
+      ref="child"
+      :parent-message="parentMessage"
+      @child-event="handleChildEvent"&gt;
+    &lt;/child-component&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>// 子组件
+export default {
+  name: 'ChildComponent',
+  props: ['parentMessage'],
+  data() {
+    return {
+      childMessage: 'Hello from child'
+    }
+  },
+  methods: {
+    sendToParent() {
+      this.$emit('child-event', this.childMessage)
+    },
+    
+    childMethod() {
+      console.log('子组件方法被调用了')
+    },
+    
+    // 访问父组件（不推荐）
+    accessParent() {
+      console.log('父组件数据:', this.$parent.parentMessage)
+    }
+  }
+}
+</code></pre> 
+<h4 id="12.2%20%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1" name="12.2%20%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1">12.2 兄弟组件通信</h4> 
+<p><strong>方法一：通过父组件中转</strong></p> 
+<pre style="max-height: max-content !important; "><code>// 父组件作为中介
+export default {
+  name: 'ParentComponent',
+  data() {
+    return {
+      sharedData: ''
+    }
+  },
+  methods: {
+    updateSharedData(data) {
+      this.sharedData = data
+    }
+  }
+}
+</code></pre> 
+<p><strong>方法二：事件总线</strong></p> 
+<pre style="max-height: max-content !important; "><code>// eventBus.js
+import Vue from 'vue'
+export const EventBus = new Vue()
+
+// 组件A
+import { EventBus } from './eventBus'
+
+export default {
+  methods: {
+    sendMessage() {
+      EventBus.$emit('message-sent', 'Hello from Component A')
+    }
+  },
+  beforeDestroy() {
+    EventBus.$off('message-sent')
+  }
+}
+
+// 组件B
+import { EventBus } from './eventBus'
+
+export default {
+  created() {
+    EventBus.$on('message-sent', this.handleMessage)
+  },
+  methods: {
+    handleMessage(message) {
+      console.log('收到消息:', message)
+    }
+  },
+  beforeDestroy() {
+    EventBus.$off('message-sent', this.handleMessage)
+  }
+}
+</code></pre> 
+<h4 id="12.3%20%E8%B7%A8%E7%BA%A7%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1" name="12.3%20%E8%B7%A8%E7%BA%A7%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1">12.3 跨级组件通信</h4> 
+<p><strong>provide / inject</strong></p> 
+<pre style="max-height: max-content !important; "><code>// 祖先组件
+export default {
+  name: 'AncestorComponent',
+  provide() {
+    return {
+      theme: 'dark',
+      user: this.user,
+      // 提供响应式数据
+      getReactiveData: () =&gt; this.reactiveData
+    }
+  },
+  data() {
+    return {
+      user: { name: '张三', role: 'admin' },
+      reactiveData: 'initial'
+    }
+  }
+}
+
+// 后代组件
+export default {
+  name: 'DescendantComponent',
+  inject: ['theme', 'user', 'getReactiveData'],
+  computed: {
+    reactiveData() {
+      return this.getReactiveData()
+    }
+  },
+  created() {
+    console.log('主题:', this.theme)
+    console.log('用户:', this.user)
+  }
+}
+</code></pre> 
+<h4 id="12.4%20%24attrs%20%E5%92%8C%20%24listeners" name="12.4%20%24attrs%20%E5%92%8C%20%24listeners">12.4 $attrs 和 $listeners</h4> 
+<pre style="max-height: max-content !important; "><code>// 中间组件 (不处理props，直接传递)
+export default {
+  name: 'MiddleComponent',
+  inheritAttrs: false, // 禁用自动继承
+  created() {
+    console.log('透传的属性:', this.$attrs)
+    console.log('透传的事件:', this.$listeners)
+  }
+}
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 中间组件模板 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h3&gt;中间组件&lt;/h3&gt;
+    &lt;!-- 透传所有属性和事件 --&gt;
+    &lt;target-component v-bind="$attrs" v-on="$listeners"&gt;&lt;/target-component&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre> 
+<hr> 
+<h3 id="13.%20%E6%8F%92%E6%A7%BD%E7%B3%BB%E7%BB%9F" name="13.%20%E6%8F%92%E6%A7%BD%E7%B3%BB%E7%BB%9F">13. 插槽系统</h3> 
+<h4 id="13.1%20%E5%9F%BA%E7%A1%80%E6%8F%92%E6%A7%BD" name="13.1%20%E5%9F%BA%E7%A1%80%E6%8F%92%E6%A7%BD">13.1 基础插槽</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 子组件 BaseLayout.vue --&gt;
+&lt;template&gt;
+  &lt;div class="container"&gt;
+    &lt;header&gt;
+      &lt;!-- 具名插槽 --&gt;
+      &lt;slot name="header"&gt;&lt;/slot&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+      &lt;!-- 默认插槽 --&gt;
+      &lt;slot&gt;
+        &lt;p&gt;默认内容，当没有提供内容时显示&lt;/p&gt;
+      &lt;/slot&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+      &lt;!-- 具名插槽 --&gt;
+      &lt;slot name="footer"&gt;&lt;/slot&gt;
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 父组件使用插槽 --&gt;
+&lt;template&gt;
+  &lt;base-layout&gt;
+    &lt;!-- 具名插槽的新语法 (Vue 2.6+) --&gt;
+    &lt;template v-slot:header&gt;
+      &lt;h1&gt;页面标题&lt;/h1&gt;
+    &lt;/template&gt;
+    
+    &lt;!-- 默认插槽 --&gt;
+    &lt;template v-slot:default&gt;
+      &lt;p&gt;主要内容&lt;/p&gt;
+      &lt;p&gt;更多内容&lt;/p&gt;
+    &lt;/template&gt;
+    
+    &lt;!-- 缩写语法 --&gt;
+    &lt;template #footer&gt;
+      &lt;p&gt;版权信息&lt;/p&gt;
+    &lt;/template&gt;
+  &lt;/base-layout&gt;
+&lt;/template&gt;
+</code></pre> 
+<h4 id="13.2%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD" name="13.2%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD">13.2 作用域插槽</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 子组件 UserList.vue --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;div v-for="user in users" :key="user.id"&gt;
+      &lt;!-- 作用域插槽，传递数据给父组件 --&gt;
+      &lt;slot :user="user" :index="index"&gt;
+        &lt;!-- 默认内容 --&gt;
+        &lt;span&gt;{<!-- -->{ user.name }}&lt;/span&gt;
+      &lt;/slot&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'UserList',
+  data() {
+    return {
+      users: [
+        { id: 1, name: '张三', email: 'zhangsan@example.com' },
+        { id: 2, name: '李四', email: 'lisi@example.com' }
+      ]
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 父组件使用作用域插槽 --&gt;
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;user-list&gt;
+      &lt;template v-slot:default="slotProps"&gt;
+        &lt;div class="user-card"&gt;
+          &lt;h3&gt;{<!-- -->{ slotProps.user.name }}&lt;/h3&gt;
+          &lt;p&gt;{<!-- -->{ slotProps.user.email }}&lt;/p&gt;
+          &lt;p&gt;索引: {<!-- -->{ slotProps.index }}&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/template&gt;
+    &lt;/user-list&gt;
+    
+    &lt;!-- 解构赋值 --&gt;
+    &lt;user-list&gt;
+      &lt;template v-slot:default="{ user, index }"&gt;
+        &lt;li&gt;{<!-- -->{ index + 1 }}. {<!-- -->{ user.name }} - {<!-- -->{ user.email }}&lt;/li&gt;
+      &lt;/template&gt;
+    &lt;/user-list&gt;
+    
+    &lt;!-- 缩写语法 --&gt;
+    &lt;user-list&gt;
+      &lt;template #default="{ user }"&gt;
+        &lt;button&gt;{<!-- -->{ user.name }}&lt;/button&gt;
+      &lt;/template&gt;
+    &lt;/user-list&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre> 
+<h4 id="13.3%20%E5%8A%A8%E6%80%81%E6%8F%92%E6%A7%BD%E5%90%8D" name="13.3%20%E5%8A%A8%E6%80%81%E6%8F%92%E6%A7%BD%E5%90%8D">13.3 动态插槽名</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;base-layout&gt;
+    &lt;template v-slot:[dynamicSlotName]&gt;
+      &lt;p&gt;动态插槽内容&lt;/p&gt;
+    &lt;/template&gt;
+  &lt;/base-layout&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      dynamicSlotName: 'header'
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<h4 id="13.4%20%E6%8F%92%E6%A7%BD%E7%9A%84%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95" name="13.4%20%E6%8F%92%E6%A7%BD%E7%9A%84%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95">13.4 插槽的高级用法</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 可复用的列表组件 --&gt;
+&lt;template&gt;
+  &lt;div class="fancy-list"&gt;
+    &lt;div class="list-header"&gt;
+      &lt;slot name="header" :itemCount="items.length"&gt;
+        &lt;h2&gt;列表 ({<!-- -->{ items.length }} 项)&lt;/h2&gt;
+      &lt;/slot&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="list-body"&gt;
+      &lt;div v-for="(item, index) in items" :key="item.id" class="list-item"&gt;
+        &lt;slot 
+          name="item" 
+          :item="item" 
+          :index="index"
+          :isEven="index % 2 === 0"&gt;
+          &lt;span&gt;{<!-- -->{ item.name }}&lt;/span&gt;
+        &lt;/slot&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="list-footer"&gt;
+      &lt;slot name="footer" :isEmpty="items.length === 0"&gt;
+        &lt;p v-if="items.length === 0"&gt;暂无数据&lt;/p&gt;
+      &lt;/slot&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'FancyList',
+  props: {
+    items: {
+      type: Array,
+      default: () =&gt; []
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<hr> 
+<h3 id="14.%20%E6%B7%B7%E5%85%A5(Mixins)" name="14.%20%E6%B7%B7%E5%85%A5(Mixins)">14. 混入(Mixins)</h3> 
+<h4 id="14.1%20%E5%9F%BA%E7%A1%80%E6%B7%B7%E5%85%A5" name="14.1%20%E5%9F%BA%E7%A1%80%E6%B7%B7%E5%85%A5">14.1 基础混入</h4> 
+<pre style="max-height: max-content !important; "><code>// mixins/formMixin.js
+export const formMixin = {
+  data() {
+    return {
+      loading: false,
+      errors: {}
+    }
+  },
+  methods: {
+    async submitForm(formData) {
+      this.loading = true
+      this.errors = {}
+      
+      try {
+        const response = await this.apiCall(formData)
+        this.onSuccess(response)
+      } catch (error) {
+        this.onError(error)
+      } finally {
+        this.loading = false
+      }
+    },
+    
+    onSuccess(response) {
+      console.log('提交成功:', response)
+    },
+    
+    onError(error) {
+      this.errors = error.response?.data?.errors || {}
+      console.error('提交失败:', error)
+    },
+    
+    // 抽象方法，需要组件实现
+    apiCall(formData) {
+      throw new Error('apiCall method must be implemented')
+    }
+  }
+}
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>// 使用混入的组件
+import { formMixin } from '@/mixins/formMixin'
+
+export default {
+  name: 'LoginForm',
+  mixins: [formMixin],
+  data() {
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    // 实现抽象方法
+    apiCall(formData) {
+      return this.$http.post('/api/login', formData)
+    },
+    
+    // 重写混入的方法
+    onSuccess(response) {
+      console.log('登录成功')
+      this.$router.push('/dashboard')
+    },
+    
+    handleSubmit() {
+      const formData = {
+        username: this.username,
+        password: this.password
+      }
+      this.submitForm(formData)
+    }
+  }
+}
+</code></pre> 
+<h4 id="14.2%20%E5%85%A8%E5%B1%80%E6%B7%B7%E5%85%A5" name="14.2%20%E5%85%A8%E5%B1%80%E6%B7%B7%E5%85%A5">14.2 全局混入</h4> 
+<pre style="max-height: max-content !important; "><code>// main.js
+Vue.mixin({
+  created() {
+    console.log('组件创建了:', this.$options.name)
+  },
+  methods: {
+    $log(message) {
+      console.log(`[${this.$options.name}]:`, message)
+    }
+  }
+})
+</code></pre> 
+<h4 id="14.3%20%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6" name="14.3%20%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6">14.3 选项合并</h4> 
+<pre style="max-height: max-content !important; "><code>// 混入
+const mixin = {
+  data() {
+    return {
+      message: 'hello',
+      foo: 'abc'
+    }
+  },
+  created() {
+    console.log('混入对象的钩子被调用')
+  },
+  methods: {
+    foo() {
+      console.log('foo from mixin')
+    },
+    conflicting() {
+      console.log('from mixin')
+    }
+  }
+}
+
+// 组件
+export default {
+  mixins: [mixin],
+  data() {
+    return {
+      message: 'goodbye', // 会覆盖混入的message
+      bar: 'def'
+    }
+  },
+  created() {
+    console.log('组件钩子被调用')
+    console.log(this.$data) // =&gt; { message: "goodbye", foo: "abc", bar: "def" }
+  },
+  methods: {
+    bar() {
+      console.log('bar from component')
+    },
+    conflicting() {
+      console.log('from component') // 会覆盖混入的方法
+    }
+  }
+}
+</code></pre> 
+<p><strong>合并策略：</strong></p> 
+<ul><li>数据对象：递归合并，组件数据优先</li><li>生命周期钩子：合并为数组，都会被调用，混入的先调用</li><li>方法、指令等：组件的选项会覆盖混入的选项</li></ul> 
+<h4 id="14.4%20%E5%AE%9E%E7%94%A8%E6%B7%B7%E5%85%A5%E7%A4%BA%E4%BE%8B" name="14.4%20%E5%AE%9E%E7%94%A8%E6%B7%B7%E5%85%A5%E7%A4%BA%E4%BE%8B">14.4 实用混入示例</h4> 
+<pre style="max-height: max-content !important; "><code>// mixins/windowResize.js
+export const windowResizeMixin = {
+  data() {
+    return {
+      windowWidth: 0,
+      windowHeight: 0
+    }
+  },
+  created() {
+    window.addEventListener('resize', this.updateWindowSize)
+    this.updateWindowSize()
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateWindowSize)
+  },
+  methods: {
+    updateWindowSize() {
+      this.windowWidth = window.innerWidth
+      this.windowHeight = window.innerHeight
+    }
+  },
+  computed: {
+    isMobile() {
+      return this.windowWidth &lt; 768
+    },
+    isTablet() {
+      return this.windowWidth &gt;= 768 &amp;&amp; this.windowWidth &lt; 1024
+    },
+    isDesktop() {
+      return this.windowWidth &gt;= 1024
+    }
+  }
+}
+</code></pre> 
+<hr> 
+<h3 id="15.%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4" name="15.%20%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4">15. 自定义指令</h3> 
+<h4 id="15.1%20%E6%8C%87%E4%BB%A4%E5%9F%BA%E7%A1%80" name="15.1%20%E6%8C%87%E4%BB%A4%E5%9F%BA%E7%A1%80">15.1 指令基础</h4> 
+<pre style="max-height: max-content !important; "><code>// 全局注册指令
+Vue.directive('focus', {
+  // 当被绑定的元素插入到 DOM 中时
+  inserted(el) {
+    el.focus()
+  }
+})
+
+// 局部注册指令
+export default {
+  directives: {
+    focus: {
+      inserted(el) {
+        el.focus()
+      }
+    }
+  }
+}
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 使用自定义指令 --&gt;
+&lt;input v-focus&gt;
+</code></pre> 
+<h4 id="15.2%20%E6%8C%87%E4%BB%A4%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0" name="15.2%20%E6%8C%87%E4%BB%A4%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0">15.2 指令钩子函数</h4> 
+<pre style="max-height: max-content !important; "><code>Vue.directive('demo', {
+  // 只调用一次，指令第一次绑定到元素时调用
+  bind(el, binding, vnode) {
+    console.log('bind')
+  },
+  
+  // 被绑定元素插入父节点时调用
+  inserted(el, binding, vnode) {
+    console.log('inserted')
+  },
+  
+  // 所在组件的 VNode 更新时调用
+  update(el, binding, vnode, oldVnode) {
+    console.log('update')
+  },
+  
+  // 指令所在组件的 VNode 及其子 VNode 全部更新后调用
+  componentUpdated(el, binding, vnode, oldVnode) {
+    console.log('componentUpdated')
+  },
+  
+  // 只调用一次，指令与元素解绑时调用
+  unbind(el, binding, vnode) {
+    console.log('unbind')
+  }
+})
+</code></pre> 
+<h4 id="15.3%20%E6%8C%87%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3" name="15.3%20%E6%8C%87%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3">15.3 指令参数详解</h4> 
+<pre style="max-height: max-content !important; "><code>Vue.directive('demo', {
+  bind(el, binding, vnode) {
+    console.log('指令名:', binding.name)      // demo
+    console.log('指令值:', binding.value)     // 指令绑定的值
+    console.log('旧值:', binding.oldValue)    // 前一个值
+    console.log('表达式:', binding.expression) // 字符串形式的指令表达式
+    console.log('参数:', binding.arg)         // 传给指令的参数
+    console.log('修饰符:', binding.modifiers) // 修饰符对象
+    console.log('VNode:', vnode)             // Vue编译生成的虚拟节点
+  }
+})
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 使用示例 --&gt;
+&lt;div v-demo:foo.a.b="message"&gt;&lt;/div&gt;
+</code></pre> 
+<h4 id="15.4%20%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%E7%A4%BA%E4%BE%8B" name="15.4%20%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%E7%A4%BA%E4%BE%8B">15.4 实用指令示例</h4> 
+<p><strong>防抖指令</strong></p> 
+<pre style="max-height: max-content !important; "><code>Vue.directive('debounce', {
+  inserted(el, binding) {
+    let timer
+    el.addEventListener('click', () =&gt; {
+      if (timer) {
+        clearTimeout(timer)
+      }
+      timer = setTimeout(() =&gt; {
+        binding.value()
+      }, 1000)
+    })
+  }
+})
+</code></pre> 
+<p><strong>拖拽指令</strong></p> 
+<pre style="max-height: max-content !important; "><code>Vue.directive('drag', {
+  bind(el, binding) {
+    el.style.position = 'absolute'
+    
+    const moveHandler = (e) =&gt; {
+      el.style.left = e.clientX + 'px'
+      el.style.top = e.clientY + 'px'
+    }
+    
+    const upHandler = () =&gt; {
+      document.removeEventListener('mousemove', moveHandler)
+      document.removeEventListener('mouseup', upHandler)
+    }
+    
+    el.addEventListener('mousedown', (e) =&gt; {
+      document.addEventListener('mousemove', moveHandler)
+      document.addEventListener('mouseup', upHandler)
+    })
+  }
+})
+</code></pre> 
+<p><strong>权限指令</strong></p> 
+<pre style="max-height: max-content !important; "><code>Vue.directive('permission', {
+  inserted(el, binding) {
+    const { value } = binding
+    const userPermissions = store.getters.permissions
+    
+    if (value &amp;&amp; !userPermissions.includes(value)) {
+      el.parentNode &amp;&amp; el.parentNode.removeChild(el)
+    }
+  },
+  update(el, binding) {
+    const { value, oldValue } = binding
+    if (value !== oldValue) {
+      const userPermissions = store.getters.permissions
+      if (value &amp;&amp; !userPermissions.includes(value)) {
+        el.parentNode &amp;&amp; el.parentNode.removeChild(el)
+      }
+    }
+  }
+})
+</code></pre> 
+<p><strong>懒加载指令</strong></p> 
+<pre style="max-height: max-content !important; "><code>Vue.directive('lazy', {
+  bind(el, binding) {
+    const observer = new IntersectionObserver((entries) =&gt; {
+      entries.forEach(entry =&gt; {
+        if (entry.isIntersecting) {
+          el.src = binding.value
+          observer.unobserve(el)
+        }
+      })
+    })
+    observer.observe(el)
+  }
+})
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 使用指令 --&gt;
+&lt;button v-debounce="handleClick"&gt;防抖按钮&lt;/button&gt;
+&lt;div v-drag&gt;可拖拽元素&lt;/div&gt;
+&lt;button v-permission="'admin'"&gt;管理员按钮&lt;/button&gt;
+&lt;img v-lazy="imageUrl" src="placeholder.jpg"&gt;
+</code></pre> 
+<hr> 
+<h3 id="16.%20%E8%BF%87%E6%BB%A4%E5%99%A8" name="16.%20%E8%BF%87%E6%BB%A4%E5%99%A8">16. 过滤器</h3> 
+<h4 id="16.1%20%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95" name="16.1%20%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95">16.1 基础用法</h4> 
+<pre style="max-height: max-content !important; "><code>// 全局过滤器
+Vue.filter('capitalize', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
+})
+
+// 局部过滤器
+export default {
+  filters: {
+    capitalize(value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+  }
+}
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 在双花括号中 --&gt;
+{<!-- -->{ message | capitalize }}
+
+&lt;!-- 在 v-bind 中 --&gt;
+&lt;div v-bind:id="rawId | formatId"&gt;&lt;/div&gt;
+</code></pre> 
+<h4 id="16.2%20%E8%BF%87%E6%BB%A4%E5%99%A8%E9%93%BE" name="16.2%20%E8%BF%87%E6%BB%A4%E5%99%A8%E9%93%BE">16.2 过滤器链</h4> 
+<pre style="max-height: max-content !important; "><code>{<!-- -->{ message | filterA | filterB }}
+</code></pre> 
+<h4 id="16.3%20%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%82%E6%95%B0" name="16.3%20%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%82%E6%95%B0">16.3 过滤器参数</h4> 
+<pre style="max-height: max-content !important; "><code>Vue.filter('truncate', function (value, length = 10, suffix = '...') {
+  if (!value) return ''
+  if (value.length &lt;= length) return value
+  return value.substring(0, length) + suffix
+})
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 使用参数 --&gt;
+{<!-- -->{ message | truncate(20, '..') }}
+</code></pre> 
+<h4 id="16.4%20%E5%AE%9E%E7%94%A8%E8%BF%87%E6%BB%A4%E5%99%A8%E7%A4%BA%E4%BE%8B" name="16.4%20%E5%AE%9E%E7%94%A8%E8%BF%87%E6%BB%A4%E5%99%A8%E7%A4%BA%E4%BE%8B">16.4 实用过滤器示例</h4> 
+<pre style="max-height: max-content !important; "><code>// 数字格式化
+Vue.filter('currency', function (value, currency = '¥') {
+  if (!value) return ''
+  return currency + value.toFixed(2)
+})
+
+// 日期格式化
+Vue.filter('date', function (value, format = 'YYYY-MM-DD') {
+  if (!value) return ''
+  return moment(value).format(format)
+})
+
+// 文件大小格式化
+Vue.filter('fileSize', function (bytes) {
+  if (!bytes) return '0 B'
+  
+  const k = 1024
+  const sizes = ['B', 'KB', 'MB', 'GB', 'TB']
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
+})
+
+// 高亮搜索文本
+Vue.filter('highlight', function (value, search) {
+  if (!search) return value
+  const regex = new RegExp(`(${search})`, 'gi')
+  return value.replace(regex, '&lt;mark&gt;$1&lt;/mark&gt;')
+})
+
+// 数组连接
+Vue.filter('join', function (value, separator = ', ') {
+  if (!Array.isArray(value)) return value
+  return value.join(separator)
+})
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 使用示例 --&gt;
+&lt;p&gt;价格: {<!-- -->{ price | currency('$') }}&lt;/p&gt;
+&lt;p&gt;日期: {<!-- -->{ date | date('YYYY年MM月DD日') }}&lt;/p&gt;
+&lt;p&gt;文件大小: {<!-- -->{ fileSize | fileSize }}&lt;/p&gt;
+&lt;p v-html="content | highlight(searchText)"&gt;&lt;/p&gt;
+&lt;p&gt;标签: {<!-- -->{ tags | join(' | ') }}&lt;/p&gt;
+</code></pre> 
+<hr> 
+<h3 id="17.%20Vue%20Router%E8%B7%AF%E7%94%B1" name="17.%20Vue%20Router%E8%B7%AF%E7%94%B1">17. Vue Router路由</h3> 
+<h4 id="17.1%20%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE" name="17.1%20%E8%B7%AF%E7%94%B1%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE">17.1 路由基础配置</h4> 
+<pre style="max-height: max-content !important; "><code>// router/index.js
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from '@/views/Home.vue'
+import About from '@/views/About.vue'
+
+Vue.use(VueRouter)
+
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
+  },
+  {
+    // 动态路由参数
+    path: '/user/:id',
+    name: 'User',
+    component: () =&gt; import('@/views/User.vue'),
+    // 路由独享的守卫
+    beforeEnter: (to, from, next) =&gt; {
+      // 路由验证逻辑
+      next()
+    }
+  },
+  {
+    // 嵌套路由
+    path: '/parent',
+    component: () =&gt; import('@/views/Parent.vue'),
+    children: [
+      {
+        path: '',
+        component: () =&gt; import('@/views/ParentDefault.vue')
+      },
+      {
+        path: 'child',
+        component: () =&gt; import('@/views/Child.vue')
+      }
+    ]
+  },
+  {
+    // 重定向
+    path: '/redirect',
+    redirect: '/'
+  },
+  {
+    // 别名
+    path: '/a',
+    component: A,
+    alias: '/b'
+  },
+  {
+    // 404页面
+    path: '*',
+    component: () =&gt; import('@/views/NotFound.vue')
+  }
+]
+
+const router = new VueRouter({
+  mode: 'history', // 或 'hash'
+  base: process.env.BASE_URL,
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
+})
+
+export default router
+</code></pre> 
+<h4 id="17.2%20%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA" name="17.2%20%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA">17.2 路由导航</h4> 
+<pre style="max-height: max-content !important; "><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 声明式导航 --&gt;
+    &lt;router-link to="/"&gt;首页&lt;/router-link&gt;
+    &lt;router-link to="/about"&gt;关于&lt;/router-link&gt;
+    &lt;router-link :to="{ name: 'User', params: { id: 123 }}"&gt;用户123&lt;/router-link&gt;
+    
+    &lt;!-- 带查询参数 --&gt;
+    &lt;router-link :to="{ path: '/user', query: { name: 'vue' }}"&gt;用户&lt;/router-link&gt;
+    
+    &lt;!-- 编程式导航 --&gt;
+    &lt;button @click="goHome"&gt;回到首页&lt;/button&gt;
+    &lt;button @click="goBack"&gt;后退&lt;/button&gt;
+    &lt;button @click="goForward"&gt;前进&lt;/button&gt;
+    
+    &lt;!-- 路由出口 --&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  methods: {
+    goHome() {
+      this.$router.push('/')
+    },
+    goToUser() {
+      this.$router.push({ name: 'User', params: { id: 456 }})
+    },
+    goWithQuery() {
+      this.$router.push({ path: '/user', query: { name: 'vue', age: 18 }})
+    },
+    replaceRoute() {
+      this.$router.replace('/about')
+    },
+    goBack() {
+      this.$router.go(-1)
+    },
+    goForward() {
+      this.$router.go(1)
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre> 
+<h4 id="17.3%20%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E8%8E%B7%E5%8F%96" name="17.3%20%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E8%8E%B7%E5%8F%96">17.3 路由参数获取</h4> 
+<pre style="max-height: max-content !important; "><code>export default {
+  name: 'User',
+  created() {
+    // 获取路由参数
+    console.log('用户ID:', this.$route.params.id)
+    
+    // 获取查询参数
+    console.log('查询参数:', this.$route.query)
+    
+    // 获取完整路径
+    console.log('完整路径:', this.$route.fullPath)
+    
+    // 获取匹配的路由记录
+    console.log('匹配的路由:', this.$route.matched)
+  },
+  watch: {
+    // 监听路由变化
+    '$route'(to, from) {
+      console.log('路由从', from.path, '变为', to.path)
+      this.fetchUserData(to.params.id)
+    }
+  },
+  methods: {
+    fetchUserData(userId) {
+      // 根据用户ID获取数据
+    }
+  }
+}
+</code></pre> 
+<h4 id="17.4%20%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB" name="17.4%20%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB">17.4 路由守卫</h4> 
+<pre style="max-height: max-content !important; "><code>// 全局前置守卫
+router.beforeEach((to, from, next) =&gt; {
+  console.log('全局前置守卫')
+  
+  // 检查是否需要登录
+  if (to.matched.some(record =&gt; record.meta.requiresAuth)) {
+    if (!store.getters.isLoggedIn) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+// 全局解析守卫
+router.beforeResolve((to, from, next) =&gt; {
+  console.log('全局解析守卫')
+  next()
+})
+
+// 全局后置钩子
+router.afterEach((to, from) =&gt; {
+  console.log('全局后置钩子')
+  // 设置页面标题
+  document.title = to.meta.title || 'Default Title'
+})
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>// 组件内守卫
+export default {
+  beforeRouteEnter(to, from, next) {
+    // 在渲染该组件的对应路由被确认前调用
+    // 不能获取组件实例 `this`
+    console.log('beforeRouteEnter')
+    next(vm =&gt; {
+      // 通过 `vm` 访问组件实例
+    })
+  },
+  
+  beforeRouteUpdate(to, from, next) {
+    // 在当前路由改变，但是该组件被复用时调用
+    // 可以访问组件实例 `this`
+    console.log('beforeRouteUpdate')
+    this.fetchUserData(to.params.id)
+    next()
+  },
+  
+  beforeRouteLeave(to, from, next) {
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
+    const answer = window.confirm('确定要离开吗？')
+    if (answer) {
+      next()
+    } else {
+      next(false)
+    }
+  }
+}
+</code></pre> 
+<h4 id="17.5%20%E5%91%BD%E5%90%8D%E8%A7%86%E5%9B%BE" name="17.5%20%E5%91%BD%E5%90%8D%E8%A7%86%E5%9B%BE">17.5 命名视图</h4> 
+<pre style="max-height: max-content !important; "><code>// 路由配置
+{
+  path: '/dashboard',
+  components: {
+    default: Dashboard,
+    sidebar: Sidebar,
+    main: Main
+  }
+}
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 模板 --&gt;
+&lt;router-view&gt;&lt;/router-view&gt;
+&lt;router-view name="sidebar"&gt;&lt;/router-view&gt;
+&lt;router-view name="main"&gt;&lt;/router-view&gt;
+</code></pre> 
+<hr> 
+<h3 id="18.%20Vuex%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86" name="18.%20Vuex%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86">18. Vuex状态管理</h3> 
+<h4 id="18.1%20Vuex%E5%9F%BA%E7%A1%80%E7%BB%93%E6%9E%84" name="18.1%20Vuex%E5%9F%BA%E7%A1%80%E7%BB%93%E6%9E%84">18.1 Vuex基础结构</h4> 
+<pre style="max-height: max-content !important; "><code>// store/index.js
+import Vue from 'vue'
+import Vuex from 'vuex'
+import user from './modules/user'
+import product from './modules/product'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  state: {
+    count: 0,
+    message: 'Hello Vuex'
+  },
+  
+  getters: {
+    doubleCount: state =&gt; state.count * 2,
+    countPlusParam: state =&gt; param =&gt; state.count + param
+  },
+  
+  mutations: {
+    // 同步操作
+    INCREMENT(state) {
+      state.count++
+    },
+    
+    INCREMENT_BY(state, payload) {
+      state.count += payload
+    },
+    
+    UPDATE_MESSAGE(state, message) {
+      state.message = message
+    }
+  },
+  
+  actions: {
+    // 异步操作
+    async fetchData({ commit, state, getters, dispatch }) {
+      try {
+        const response = await api.getData()
+        commit('UPDATE_MESSAGE', response.data.message)
+        return response.data
+      } catch (error) {
+        console.error('获取数据失败:', error)
+        throw error
+      }
+    },
+    
+    incrementAsync({ commit }, delay = 1000) {
+      setTimeout(() =&gt; {
+        commit('INCREMENT')
+      }, delay)
+    }
+  },
+  
+  modules: {
+    user,
+    product
+  },
+  
+  strict: process.env.NODE_ENV !== 'production'
+})
+</code></pre> 
+<h4 id="18.2%20%E6%A8%A1%E5%9D%97%E5%8C%96" name="18.2%20%E6%A8%A1%E5%9D%97%E5%8C%96">18.2 模块化</h4> 
+<pre style="max-height: max-content !important; "><code>// store/modules/user.js
+const state = {
+  currentUser: null,
+  permissions: [],
+  isLoggedIn: false
+}
+
+const getters = {
+  userName: state =&gt; state.currentUser?.name || 'Guest',
+  hasPermission: state =&gt; permission =&gt; {
+    return state.permissions.includes(permission)
+  }
+}
+
+const mutations = {
+  SET_USER(state, user) {
+    state.currentUser = user
+    state.isLoggedIn = !!user
+  },
+  
+  SET_PERMISSIONS(state, permissions) {
+    state.permissions = permissions
+  },
+  
+  LOGOUT(state) {
+    state.currentUser = null
+    state.permissions = []
+    state.isLoggedIn = false
+  }
+}
+
+const actions = {
+  async login({ commit }, credentials) {
+    try {
+      const response = await api.login(credentials)
+      const { user, permissions } = response.data
+      
+      commit('SET_USER', user)
+      commit('SET_PERMISSIONS', permissions)
+      
+      // 存储到本地
+      localStorage.setItem('token', response.data.token)
+      
+      return user
+    } catch (error) {
+      commit('LOGOUT')
+      throw error
+    }
+  },
+  
+  async logout({ commit }) {
+    try {
+      await api.logout()
+    } finally {
+      commit('LOGOUT')
+      localStorage.removeItem('token')
+    }
+  },
+  
+  async fetchUserProfile({ commit, state }) {
+    if (!state.isLoggedIn) return
+    
+    try {
+      const response = await api.getUserProfile()
+      commit('SET_USER', response.data)
+    } catch (error) {
+      console.error('获取用户信息失败:', error)
+    }
+  }
+}
+
+export default {
+  namespaced: true,
+  state,
+  getters,
+  mutations,
+  actions
+}
+</code></pre> 
+<h4 id="18.3%20%E5%9C%A8%E7%BB%84%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8Vuex" name="18.3%20%E5%9C%A8%E7%BB%84%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8Vuex">18.3 在组件中使用Vuex</h4> 
+<pre style="max-height: max-content !important; "><code>import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+
+export default {
+  computed: {
+    // 映射state
+    ...mapState(['count', 'message']),
+    ...mapState('user', ['currentUser', 'isLoggedIn']),
+    
+    // 映射getters
+    ...mapGetters(['doubleCount']),
+    ...mapGetters('user', ['userName', 'hasPermission']),
+    
+    // 自定义计算属性
+    localCount: {
+      get() {
+        return this.$store.state.count
+      },
+      set(value) {
+        this.$store.commit('INCREMENT_BY', value - this.count)
+      }
+    }
+  },
+  
+  methods: {
+    // 映射mutations
+    ...mapMutations(['INCREMENT', 'UPDATE_MESSAGE']),
+    ...mapMutations('user', ['SET_USER', 'LOGOUT']),
+    
+    // 映射actions
+    ...mapActions(['fetchData', 'incrementAsync']),
+    ...mapActions('user', ['login', 'logout']),
+    
+    // 手动调用
+    handleLogin() {
+      this.$store.dispatch('user/login', {
+        username: this.username,
+        password: this.password
+      }).then(user =&gt; {
+        this.$router.push('/dashboard')
+      }).catch(error =&gt; {
+        this.errorMessage = error.message
+      })
+    },
+    
+    incrementCount() {
+      this.$store.commit('INCREMENT')
+    }
+  }
+}
+</code></pre> 
+<h4 id="18.4%20Vuex%E6%8F%92%E4%BB%B6" name="18.4%20Vuex%E6%8F%92%E4%BB%B6">18.4 Vuex插件</h4> 
+<pre style="max-height: max-content !important; "><code>// 插件：本地存储同步
+const localStoragePlugin = store =&gt; {
+  // 初始化时从本地存储恢复状态
+  const savedState = localStorage.getItem('vuex-state')
+  if (savedState) {
+    store.replaceState({
+      ...store.state,
+      ...JSON.parse(savedState)
+    })
+  }
+  
+  // 监听mutations，同步到本地存储
+  store.subscribe((mutation, state) =&gt; {
+    localStorage.setItem('vuex-state', JSON.stringify({
+      user: state.user // 只保存用户状态
+    }))
+  })
+}
+
+// 插件：日志记录
+const loggerPlugin = store =&gt; {
+  store.subscribe((mutation, state) =&gt; {
+    console.group(`Mutation: ${mutation.type}`)
+    console.log('Payload:', mutation.payload)
+    console.log('State after mutation:', state)
+    console.groupEnd()
+  })
+  
+  store.subscribeAction((action, state) =&gt; {
+    console.log(`Action: ${action.type}`, action.payload)
+  })
+}
+
+// 使用插件
+const store = new Vuex.Store({
+  // ... store 配置
+  plugins: [localStoragePlugin, loggerPlugin]
+})
+</code></pre> 
+<h4 id="18.5%20%E8%A1%A8%E5%8D%95%E5%A4%84%E7%90%86" name="18.5%20%E8%A1%A8%E5%8D%95%E5%A4%84%E7%90%86">18.5 表单处理</h4> 
+<pre style="max-height: max-content !important; "><code>// 双向绑定的计算属性
+export default {
+  computed: {
+    message: {
+      get() {
+        return this.$store.state.obj.message
+      },
+      set(value) {
+        this.$store.commit('updateMessage', value)
+      }
+    }
+  }
+}
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;input v-model="message"&gt;
+</code></pre> 
+<hr> 
+<h3 id="19.%20%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5" name="19.%20%E5%AE%9E%E6%88%98%E6%8A%80%E5%B7%A7%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">19. 实战技巧与最佳实践</h3> 
+<h4 id="19.1%20%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99" name="19.1%20%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99">19.1 组件设计原则</h4> 
+<pre style="max-height: max-content !important; "><code>// ✅ 好的组件设计
+export default {
+  name: 'UserCard',
+  props: {
+    user: {
+      type: Object,
+      required: true,
+      validator(value) {
+        return value &amp;&amp; typeof value.id !== 'undefined'
+      }
+    },
+    showEmail: {
+      type: Boolean,
+      default: false
+    },
+    size: {
+      type: String,
+      default: 'medium',
+      validator(value) {
+        return ['small', 'medium', 'large'].includes(value)
+      }
+    }
+  },
+  emits: ['click', 'edit', 'delete'],
+  
+  computed: {
+    cardClasses() {
+      return [
+        'user-card',
+        `user-card--${this.size}`,
+        {
+          'user-card--clickable': this.$listeners.click
+        }
+      ]
+    }
+  },
+  
+  methods: {
+    handleClick() {
+      this.$emit('click', this.user)
+    },
+    
+    handleEdit() {
+      this.$emit('edit', this.user.id)
+    },
+    
+    handleDelete() {
+      this.$emit('delete', this.user.id)
+    }
+  }
+}
+</code></pre> 
+<h4 id="19.2%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96" name="19.2%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">19.2 性能优化</h4> 
+<pre style="max-height: max-content !important; "><code>// 函数式组件（适用于无状态组件）
+Vue.component('functional-component', {
+  functional: true,
+  props: ['message'],
+  render(h, { props }) {
+    return h('div', props.message)
+  }
+})
+
+// 异步组件
+const AsyncComponent = () =&gt; ({
+  component: import('./MyComponent.vue'),
+  loading: LoadingComponent,
+  error: ErrorComponent,
+  delay: 200,
+  timeout: 3000
+})
+
+// 使用Object.freeze冻结数据
+export default {
+  data() {
+    return {
+      // 大型不会改变的数据
+      frozenData: Object.freeze(largeArray)
+    }
+  }
+}
+</code></pre> 
+<h4 id="19.3%20%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86" name="19.3%20%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86">19.3 错误处理</h4> 
+<pre style="max-height: max-content !important; "><code>// 全局错误处理
+Vue.config.errorHandler = function (err, vm, info) {
+  console.error('Vue错误:', err)
+  console.error('组件:', vm)
+  console.error('错误信息:', info)
+  
+  // 发送错误报告
+  errorReporting.log(err, { vm, info })
+}
+
+// 组件内错误边界
+export default {
+  name: 'ErrorBoundary',
+  data() {
+    return {
+      hasError: false,
+      error: null
+    }
+  },
+  
+  errorCaptured(err, instance, info) {
+    this.hasError = true
+    this.error = err
+    
+    console.error('捕获到错误:', err)
+    return false // 阻止错误继续传播
+  },
+  
+  render(h) {
+    if (this.hasError) {
+      return h('div', {
+        class: 'error-boundary'
+      }, [
+        h('h2', '出现错误'),
+        h('details', [
+          h('summary', '错误详情'),
+          h('pre', this.error.toString())
+        ])
+      ])
+    }
+    
+    return this.$slots.default
+  }
+}
+</code></pre> 
+<h4 id="19.4%20%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2%E4%B8%8E%E6%87%92%E5%8A%A0%E8%BD%BD" name="19.4%20%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2%E4%B8%8E%E6%87%92%E5%8A%A0%E8%BD%BD">19.4 代码分割与懒加载</h4> 
+<pre style="max-height: max-content !important; "><code>// 路由懒加载
+const routes = [
+  {
+    path: '/home',
+    component: () =&gt; import('@/views/Home.vue')
+  },
+  {
+    path: '/about',
+    component: () =&gt; import(
+      /* webpackChunkName: "about" */ 
+      '@/views/About.vue'
+    )
+  }
+]
+
+// 组件懒加载
+export default {
+  components: {
+    HeavyComponent: () =&gt; import('./HeavyComponent.vue')
+  }
+}
+</code></pre> 
+<h4 id="19.5%20%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7" name="19.5%20%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7">19.5 开发调试技巧</h4> 
+<pre style="max-height: max-content !important; "><code>// 开发环境的全局属性
+if (process.env.NODE_ENV === 'development') {
+  window.vm = new Vue({
+    // Vue实例配置
+  })
+  
+  // 添加调试方法
+  Vue.prototype.$log = console.log
+  Vue.prototype.$dir = console.dir
+}
+
+// 组件调试
+export default {
+  name: 'DebugComponent',
+  
+  created() {
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`${this.$options.name} created`)
+      console.log('Props:', this.$props)
+      console.log('Data:', this.$data)
+    }
+  },
+  
+  updated() {
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`${this.$options.name} updated`)
+    }
+  }
+}
+</code></pre> 
+<h4 id="19.6%20%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5" name="19.6%20%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5">19.6 项目结构最佳实践</h4> 
+<pre style="max-height: max-content !important; "><code>src/
+├── api/                    # API接口
+│   ├── user.js
+│   ├── product.js
+│   └── index.js
+├── assets/                 # 静态资源
+│   ├── images/
+│   ├── styles/
+│   └── fonts/
+├── components/             # 公共组件
+│   ├── base/              # 基础组件
+│   ├── business/          # 业务组件
+│   └── layout/            # 布局组件
+├── directives/            # 自定义指令
+├── filters/               # 过滤器
+├── mixins/                # 混入
+├── plugins/               # 插件
+├── router/                # 路由
+├── store/                 # 状态管理
+│   ├── modules/
+│   ├── index.js
+│   └── types.js
+├── utils/                 # 工具函数
+│   ├── request.js         # HTTP请求
+│   ├── validator.js       # 验证器
+│   └── helpers.js         # 辅助函数
+├── views/                 # 页面组件
+└── main.js               # 入口文件
+</code></pre> 
+<h4 id="19.7%20%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83" name="19.7%20%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83">19.7 代码规范</h4> 
+<pre style="max-height: max-content !important; "><code>// 组件命名规范
+export default {
+  name: 'UserProfileCard', // PascalCase
+  
+  // 属性顺序
+  components: {},
+  mixins: [],
+  props: {},
+  data() {},
+  computed: {},
+  watch: {},
+  
+  // 生命周期钩子（按顺序）
+  beforeCreate() {},
+  created() {},
+  beforeMount() {},
+  mounted() {},
+  beforeUpdate() {},
+  updated() {},
+  beforeDestroy() {},
+  destroyed() {},
+  
+  methods: {}
+}
+</code></pre> 
+<pre style="max-height: max-content !important; "><code>&lt;!-- 模板规范 --&gt;
+&lt;template&gt;
+  &lt;div class="user-profile-card"&gt;
+    &lt;!-- 使用kebab-case --&gt;
+    &lt;user-avatar
+      :src="user.avatar"
+      :size="avatarSize"
+      @click="handleAvatarClick"&gt;
+    &lt;/user-avatar&gt;
+    
+    &lt;!-- 属性顺序：指令、属性、事件 --&gt;
+    &lt;button
+      v-if="showButton"
+      :disabled="isLoading"
+      class="btn btn-primary"
+      @click="handleClick"&gt;
+      {<!-- -->{ buttonText }}
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre> 
+<h4 id="19.8%20%E6%B5%8B%E8%AF%95%E5%BB%BA%E8%AE%AE" name="19.8%20%E6%B5%8B%E8%AF%95%E5%BB%BA%E8%AE%AE">19.8 测试建议</h4> 
+<pre style="max-height: max-content !important; "><code>// 单元测试示例
+import { shallowMount } from '@vue/test-utils'
+import UserCard from '@/components/UserCard.vue'
+
+describe('UserCard.vue', () =&gt; {
+  const user = {
+    id: 1,
+    name: 'John Doe',
+    email: 'john@example.com'
+  }
+  
+  it('renders user name correctly', () =&gt; {
+    const wrapper = shallowMount(UserCard, {
+      propsData: { user }
+    })
+    
+    expect(wrapper.find('.user-name').text()).toBe('John Doe')
+  })
+  
+  it('emits click event when clicked', async () =&gt; {
+    const wrapper = shallowMount(UserCard, {
+      propsData: { user }
+    })
+    
+    await wrapper.find('.user-card').trigger('click')
+    
+    expect(wrapper.emitted().click).toBeTruthy()
+    expect(wrapper.emitted().click[0]).toEqual([user])
+  })
+})
+</code></pre> 
+<hr> 
+<h3 id="%E6%80%BB%E7%BB%93" name="%E6%80%BB%E7%BB%93">总结</h3> 
+<p>Vue2是一个功能强大且易于学习的前端框架。通过本文档的学习，你应该能够：</p> 
+<ol><li><strong>掌握Vue2的核心概念</strong>：响应式数据、组件化、指令系统</li><li><strong>熟练使用Vue2的各种特性</strong>：生命周期、计算属性、侦听器、插槽等</li><li><strong>构建完整的应用</strong>：使用Vue Router进行路由管理，使用Vuex进行状态管理</li><li><strong>遵循最佳实践</strong>：代码规范、性能优化、错误处理</li></ol> 
+<p>Vue2虽然不再是最新版本，但它的稳定性和成熟的生态系统使其仍然是很多项目的首选。掌握Vue2的知识也为学习Vue3打下了坚实的基础。</p> 
+<p>继续实践和探索，你会发现Vue2的更多精彩之处！</p>
+                </div>
+        </div>
+    </article>
+    
+  </div>
+<div class="directory-boxshadow-dialog" style="display:none;">
+  <div class="directory-boxshadow-dialog-box">
+  </div>
+   <div class="vip-limited-time-offer-box-new" id="vip-limited-time-offer-box-new">
+      <img class="limited-img limited-img-new" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAM1BMVEVHHhZSLCRSLCV1VlB1VlGjjoqjjoujj4qjj4vRx8Xc1dPd1dPd1dTo4+Lz8fD08fH///82vA0UAAAAsUlEQVQ4y93UwQ7CIBCE4R+rFLRY3v9pPZhGdndIevBUrnzJhp0J9JOHS8K9yvtXc7AlHsJlbruFGwiZgepGFyEzsIbHRDm68dVeGmfWY6V1do+jdM4t/Ce988kcMrgQ4VdGF7MuwBKdKEUB4VR77sByomYZVO4otwiJ7IFoCLovUTLpS5DMeuUl0145ycx5ydQ5ydxZecCq8u0F2Cx8J+F6L6TmRren/Cnqfun/8W/wA07DV8ua3D8cAAAAAElFTkSuQmCC">
+      <div class="vip-limited-time-top">
+        确定要放弃本次机会？
+      </div>
+      <span class="vip-limited-time-text">福利倒计时</span>
+      <div class="limited-time-box-new">
+        <span class="time-hour"></span>
+        <i>:</i>
+        <span class="time-minite"></span>
+        <i>:</i>
+        <span class="time-second"></span>
+      </div>
+      <div class="limited-time-vip-box">
+        <p>
+          <img class="coupon-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAYAAADFeBvrAAAHNUlEQVRo3u1Z206VRxTuI/AIPIKpVtFoJBqNRmuLwUCg4gYVrFTxBBUCgYKiIoKotR4iiNFo1UpLWyO1ze4T1DeQ2160NU3amLT/rNWZtdbMrH8ffvGmV3uSL+v0fd+a6QZs4J13KqdyKqdyKqdyKqdylnQwP1mF+cuDmJ9axPwl9ID8lIXLp7qW7nVpxvKdHij+fFmiq8mL/UPtc+lrLe332qkX+NNkbmmX+GHiBT6fRPwxAp5PxPh8Ir/E/zDVVrPIXhMQ9S663kXXg8JdoeYI0mceYUL0hJnsSyxcGMSFccRnDHh23kYL11sYBwz1+cE3PmhhfE57cJTaeS1wriF98Psx1Tsf62fjoO62p/wlvj/3wgIVgPDUxbMIhHMUbb/ko3BuqMrO5hyPdKSVPGojno4BfCc94o9FvuxVPqDvRV7fjZX/ioH50wjzo4jzoxDwje1ZuNxHZA7iN6OLOH96xsydOmJrh2nLeeW14LVex9HD+4l/2IOgdmovVPdQWCz/oCfD6IBPRtDnvsa5EdAo5AqH8xgtbyTohQfw1bDyV3qVe67sC1wUX3WH8g/CR0MIFvh4CODRINqaouQc7czPGbY/d8b2PwPSOs1DP1Mcrw/zoej/UPlLLMppZ7yb6BEeD2Y86EE/OMD9foQHAxb9iC66+r7L3aygnr+A+M9rxL9ehT7PhCcx5Stzvy/M1JxzriNvINWnuzwYyPiSu9eLeLcXQcHWgPf6EO/1QuipHJ7fxHAsj/t9aQ/Nl5pBvNSMtGFfn3ieBLzLddrPzu/2vSz/oNkexDs9gLM9ALPd4OqA24I7Pak+LlwH/x6qrRaZA76OfOt5W3nOfmrnnyLMpj1d3/FkJrE7eEYP8sv4hG4dxyJMH4eiejrW+PVE+IBCf/p4yFH4LmKxl8UJxT0R+4onHsBc4gNxp485z4wH3TiCcPMIULzRRRFvHrW5g8vtzAJprvDzPYRvr/g66oNXNryvcfV133f7j6p7aC/2ll7Gg744hAJQOcFcPYSo+njN5tdibQRcH05p4WrKC7yeULDLpLnpO4i3cEC8M76HLh9EYwEKob5yEDyQYqf0P7Zf1/anjUM5neqZEj3yuhL4WOoeRb6+vnIw4xOa6gC42IEhSm58b6oDXW4m3awdqDfTx99Af/7m+FFngexj9e3RR/Qm8NpJwzvai/YbdY/UvaJ/xoMm9gFc2IdwYS8Yir4OoL7MOH55Pv5QUHyj+CmPCfEY38uQntcyf7+dhf2pndqfsTfjQWM5gHOtaBzGWhEIOXC1zSlynov5/bPhQXpGWonOy/NpVuADekZ7cgW8NvZR94iz1owHje4GGG1BUwA40wKmRJ9mt/r5Na//5tp6KF2af4bnzg8K5lCKP5qeU37ax91+Vv5BZqQZzXATuggjTcDR9mzuIpxq9j0A7oHrwewpNDd6WSccD6qHJdf9wnxYcSPfejVhKX3gn2rOeNBQI5bEoK4bACz0DKiX5toaOAp/sAEZUWOo38h90QBH4Wi97jeIN9UZD+qvR+jfBaZ/F6ZRD64PNrqaI4HmcGvIfhMf5Dylr0/HAfaKHtG/VM5evq4vwSVO+X+HTG8dEk66uBOhdyf4nOqTdZCKvXUAYx38/3Kv/3I6YA+ekc72gGPwCYgzMOIZUZfiFWnjPTI+oZ4P0HRb2Jh07wg5dO8AnxvKZebitb74U65bz0XDNZCf1vcUeHu/HolKQ5wetV9xLDIedGwbwrFtoKM5th05emzXPTCfn4wP4j6wdnshF83RbZB4XYrjd4U5IUnt2476PtHn/YwHdW3FpGsLmsNbMDlMEYyrPajeigSXO3yW49f8/qviRB1ojffvSveKYDWJ3xF0W/lO3Ed1r4wHdW5C88lmCxs7N0HSyZFAfYvOzRhqiTDwkf3o66LG6kWLwcPyfJ7EvngqXnoORt+hU+33/UObyz8oObARkwMb0BzYABy59tB14awUHMewnwekdRvDrtJ6z9+o/YA14a4Zn9C+9WD2r8fEYd96pFp6FuD6sVfrOK+S/bV50147aTpqJ22dT5iLbu543ifxPemTXnb5POwu2Oc8/J2Cf7xHxoNa1y2a1rXgkLSuRULbWjRt6yg30qN529o5zNVWFf2iJVdbDW3rfnEa76M9KRe/Uijcz3zZ2Ro9Fcr/otG01AwmLavRwbSsBp+Hejf3/s2tGXrTr4KTPavzZs8ap0t5uTzWbr6GYtzJmsDfXQNG5qXuleTWlP+lPeaWVZnmlYtJ80pMmlYCRYGhehVC88qXS/plfWNNtfV6lTS9B8Z7NSmIp3GRQRxjdxC/Ke5mrCIe91ehcF8s6SJJ4/KZpGE5moblkDBQAP80vHtkqX9OsT63LZDgPRpXoPJDv0d28c7G5UUc7WM5f/zbuGIIP1xW9XZ/K2pcVl2EtzBx3GKPmuqSvmVRU1RX/opXOZVTOZVTOZXzP57/AGBuI3LxldEjAAAAAElFTkSuQmCC">
+          <span class="def">立减 ¥</span>
+          <span class="active limited-num"></span>
+        </p>
+        <span class="">普通VIP年卡可用</span>
+      </div>
+      <a class="limited-time-btn-new" href="https://mall.csdn.net/vip" data-report-click='{"spm":"1001.2101.3001.9621"}' data-report-query="spm=1001.2101.3001.9621">立即使用</a>
+  </div>
+</div>
+    <a id="commentBox" name="commentBox"></a>
+  <div id="pcCommentBox" class="comment-box comment-box-new2 login-comment-box-new" style="display:none">
+      <div class="has-comment" style="display:block">
+        <div class="one-line-box">
+          <div class="has-comment-tit go-side-comment">
+            <span class="count">0</span> 条评论
+          </div>
+          <div class="has-comment-con comment-operate-item"></div>
+          <a class="has-comment-bt-right go-side-comment focus">写评论</a>
+        </div>
+      </div>
+  </div>
+                </main>
+</div>
+</div>
+      <div class="mask-dark"></div>
+      <div class="skin-boxshadow"></div>
+      <div class="directory-boxshadow"></div>
+<div style="display:none;">
+      <img src="" onerror="">
+    </div>
+    <div class="keyword-dec-box" id="keywordDecBox"></div>
+  </body>
+    <!-- 富文本柱状图  -->
+    <link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.6.12/ckeditor/plugins/chart/chart.css">
+    <link rel="stylesheet" href="https://g.csdnimg.cn/lib/cboxEditor/1.1.6/embed-editor.min.css">
+  <link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.6.12/ckeditor/plugins/codesnippet/lib/highlight/styles/atom-one-dark.css">
+  </html>
