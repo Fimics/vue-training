@@ -10,6 +10,7 @@
     <CommandFor message="command for"/>
     <CommandModel message="command model"/>
     <CommandOn message = "command on"/>
+    <ReactiveDemo message="reactive demo"/>
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import CommandIf from "@/test/CommandIf.vue";
 import CommandFor  from "@/test/CommandFor.vue";
 import CommandModel from "@/test/CommandModel.vue";
 import CommandOn from "@/test/CommandOn.vue";
+import ReactiveDemo from "@/test/ReactiveDemo.vue";
 
 
 export default {
@@ -39,7 +41,8 @@ export default {
     CommandIf,
     CommandFor,
     CommandModel,
-    CommandOn
+    CommandOn,
+    ReactiveDemo
   }
 }
 </script>
