@@ -1,22 +1,3 @@
-
-<!--显示单列-->
-<!--<template>-->
-<!--  <div id="app">-->
-<!--    <img alt="Vue logo" src="./assets/logo.png">-->
-<!--&lt;!&ndash;    <HelloWorld msg="Welcome to Your Vue.js App"/>&ndash;&gt;-->
-<!--    <FirstVue message ="hello world11"/>-->
-<!--    <LifeCycle/>-->
-<!--    <TemplateInterpolation message="TI"/>-->
-<!--    <PropBind message="prop"/>-->
-<!--    <CommandIf message="command if"/>-->
-<!--    <CommandFor message="command for"/>-->
-<!--    <CommandModel message="command model"/>-->
-<!--    <CommandOn message = "command on"/>-->
-<!--    <ReactiveDemo message="reactive demo"/>-->
-<!--  </div>-->
-<!--</template>-->
-
-<!--显示三列-->
 <template>
   <div id="app">
 <!--    <img alt="Vue logo" src="./assets/logo.png">-->
@@ -32,6 +13,7 @@
       <ReactiveDemo message="reactive demo"/>
       <EventClick message="event click"/>
       <EventKey message="event key"/>
+      <ComputedDemo message="computed demo"/>
     </div>
   </div>
 </template>
@@ -50,6 +32,7 @@ import CommandOn from "@/test/CommandOn.vue";
 import ReactiveDemo from "@/test/ReactiveDemo.vue";
 import EventClick from "@/test/EventClick.vue";
 import EventKey from "@/test/EventKey.vue";
+import ComputedDemo from "@/test/ComputedDemo.vue";
 
 
 export default {
@@ -68,7 +51,8 @@ export default {
     CommandOn,
     ReactiveDemo,
     EventClick,
-    EventKey
+    EventKey,
+    ComputedDemo
   }
 }
 </script>
