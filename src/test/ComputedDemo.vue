@@ -12,6 +12,11 @@
   </div>
 </template>
 
+<!--计算属性 vs 方法的区别：-->
+
+<!--计算属性基于响应式依赖进行缓存，只有依赖发生改变时才会重新求值-->
+<!--方法每次调用都会执行函数-->
+
 <script>
 export default {
   name: 'ComputedDemo',

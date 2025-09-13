@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-<!--    <img alt="Vue logo" src="./assets/logo.png">-->
     <div class="component-grid">
       <FirstVue message="hello world11"/>
       <LifeCycle/>
@@ -14,32 +13,28 @@
       <EventClick message="event click"/>
       <EventKey message="event key"/>
       <ComputedDemo message="computed demo"/>
+      <WatchDemo message="watch-demo"/>
     </div>
   </div>
 </template>
 
 <script>
-
-// import HelloWorld from './components/HelloWorld.vue'
 import FirstVue from "@/test/FirstVue.vue";
 import LifeCycle from "@/test/LifeCycle.vue";
-import TemplateInterpolation  from "@/test/TemplateInterpolation.vue";
-import PropBind  from "@/test/PropBind.vue";
+import TemplateInterpolation from "@/test/TemplateInterpolation.vue";
+import PropBind from "@/test/PropBind.vue";
 import CommandIf from "@/test/CommandIf.vue";
-import CommandFor  from "@/test/CommandFor.vue";
+import CommandFor from "@/test/CommandFor.vue";
 import CommandModel from "@/test/CommandModel.vue";
 import CommandOn from "@/test/CommandOn.vue";
 import ReactiveDemo from "@/test/ReactiveDemo.vue";
 import EventClick from "@/test/EventClick.vue";
 import EventKey from "@/test/EventKey.vue";
 import ComputedDemo from "@/test/ComputedDemo.vue";
-
+import WatchDemo from "@/test/WatchDemo.vue";
 
 export default {
   name: 'App',
-  // components: {
-  //   HelloWorld
-  // }
   components: {
     PropBind,
     LifeCycle,
@@ -52,7 +47,8 @@ export default {
     ReactiveDemo,
     EventClick,
     EventKey,
-    ComputedDemo
+    ComputedDemo,
+    WatchDemo
   }
 }
 </script>
@@ -65,16 +61,21 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  width: 100%; /* 确保宽度占满整个浏览器 */
+  max-width: 100%; /* 移除最大宽度限制 */
+  padding: 0 20px; /* 添加左右内边距 */
+  box-sizing: border-box; /* 确保内边距不影响总宽度 */
 }
 
-/* 3列网格布局 */
+/* 网格布局 */
 .component-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3列等宽 */
-  gap: 20px; /* 列间距和行间距 */
-  padding: 20px;
-  max-width: 1200px; /* 限制最大宽度 */
+  grid-template-columns: repeat(5, 1fr); /* 5列等宽 */
+  gap: 20px;
+  width: 100%; /* 占满父容器 */
+  max-width: 100%; /* 移除最大宽度限制 */
   margin: 0 auto; /* 水平居中 */
+  padding: 20px 0; /* 添加上下内边距 */
 }
 
 /* 每个组件卡片样式 */
@@ -85,10 +86,28 @@ export default {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 响应式：小屏幕改为1列 */
+/* 响应式调整 */
+@media (max-width: 1200px) {
+  .component-grid {
+    grid-template-columns: repeat(4, 1fr); /* 中等屏幕4列 */
+  }
+}
+
+@media (max-width: 992px) {
+  .component-grid {
+    grid-template-columns: repeat(3, 1fr); /* 小屏幕3列 */
+  }
+}
+
 @media (max-width: 768px) {
   .component-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr); /* 平板设备2列 */
+  }
+}
+
+@media (max-width: 576px) {
+  .component-grid {
+    grid-template-columns: 1fr; /* 手机设备1列 */
   }
 }
 </style>
