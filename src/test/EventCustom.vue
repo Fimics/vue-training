@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>{{message}}</h1>
+  <div class="component">
+    <h3>{{message}}</h3>
     <!-- 键码 -->
     <input @keyup.13="submit">
 
@@ -70,17 +70,3 @@ export default {
 //   }
 // }
 </script>
-
-
-
-<style scoped>
- h1 {
-  color: red;
- }
-
- button {
-  background-color: blue;
-  color: white;
- }
-
-</style>

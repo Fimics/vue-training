@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component">
     <!-- 文本插值 -->
     <h1 :class="titleClass">{{ message }}</h1>
 
@@ -42,28 +42,3 @@ export default {
 }
 </script>
 
-<style scoped>
-/* 原有的样式 */
-h1 {
-  color: red;
-}
-
-button {
-  background-color: blue;
-  color: white;
-}
-
-/* 新增的绑定类样式 */
-.red-title {
-  font-size: 2em;
-}
-
-.primary-button {
-  padding: 10px 20px;
-  border-radius: 5px;
-}
-
-.updated-button {
-  background-color: green; /* 点击后按钮变绿 */
-}
-</style>

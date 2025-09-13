@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="component">
     <!-- 原始内容 -->
-    <h1>{{ message }}</h1>
+    <h3>{{ message }}</h3>
     <button @click="changeMessage">Click me</button>
 
     <!-- 新增条件渲染示例 -->
@@ -26,6 +26,7 @@
 <!--v-show：始终渲染，只是通过CSS的display控制显示隐藏-->
 
 <script>
+import "@/assets/styles/Components.css";
 export default {
   name: 'CommandIf',
   data() {

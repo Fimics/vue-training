@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>{{ message }}</h1>
+  <div class="component">
+    <h3>{{ message }}</h3>
     <p>用户名：{{ user.name }}，年龄：{{ user.age || '未知' }}</p>
     <ul>
       <li v-for="(item, index) in items" :key="index">{{ item }}</li>
@@ -87,27 +87,3 @@ export default {
 
 </script>
 
-<style scoped>
-h1 {
-  color: red;
-}
-
-button {
-  background-color: blue;
-  color: white;
-  margin: 5px;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: darkblue;
-}
-
-ul {
-  margin: 10px 0;
-  padding-left: 20px;
-}
-</style>

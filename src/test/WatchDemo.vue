@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>{{ message }}</h1>
+  <div class="component">
+    <h3>{{ message }}</h3>
     <div>
       <p>Ask a yes/no question:
         <input v-model.trim="question" />
@@ -87,29 +87,4 @@ export default {
 }
 </script>
 
-<style scoped>
-h1 {
-  color: red;
-  margin-bottom: 20px;
-}
 
-button {
-  background-color: blue;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-button:hover {
-  background-color: #0069d9;
-}
-
-input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-</style>

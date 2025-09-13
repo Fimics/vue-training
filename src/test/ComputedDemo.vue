@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>{{ message }}</h1>
+  <div class="component">
+    <h3>{{ message }}</h3>
     <h2>{{ fullName }}</h2>
     <h3>购物车总价: {{ totalPrice }} 元</h3>
     <button @click="changeMessage">改变消息</button>
@@ -74,15 +74,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-h1 {
-  color: red;
-}
-
-button {
-  background-color: blue;
-  color: white;
-  margin: 5px;
-}
-</style>

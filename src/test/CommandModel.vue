@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>{{message}}</h1>
+  <div class="component">
+    <h3>{{message}}</h3>
     <div>
       <!-- 输入框 -->
       <input v-model="message" placeholder="请输入">
@@ -45,17 +45,3 @@ export default {
   }
 }
 </script>
-
-
-
-<style scoped>
- h1 {
-  color: red;
- }
-
- button {
-  background-color: blue;
-  color: white;
- }
-
-</style>

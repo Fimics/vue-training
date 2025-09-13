@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="component">
+    <h3>{{message}}</h3>
     <!-- 完整语法 -->
     <button v-on:click="doThis">点击我</button>
 
@@ -72,17 +73,3 @@ export default {
   }
 }
 </script>
-
-
-
-<style scoped>
- h1 {
-  color: red;
- }
-
- button {
-  background-color: blue;
-  color: white;
- }
-
-</style>

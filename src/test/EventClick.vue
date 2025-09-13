@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>{{message}}</h1>
+  <div class="component">
+    <h3>{{message}}</h3>
     <!-- 内联处理器 -->
     <button @click="counter += 1">Add 1</button>
     <p>按钮被点击了 {{ counter }} 次</p>
@@ -40,16 +40,3 @@ export default {
 }
 </script>
 
-
-
-<style scoped>
- h1 {
-  color: red;
- }
-
- button {
-  background-color: blue;
-  color: white;
- }
-
-</style>

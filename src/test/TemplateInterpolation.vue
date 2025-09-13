@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="component">
     <!-- 文本插值 -->
-    <div><h1>{{ message }}</h1></div>
+    <div><h3>{{ message }}</h3></div>
 
     <!-- 文本插值 -->
     <div>{{ message }}</div>
@@ -42,16 +42,3 @@ export default {
 
 }
 </script>
-
-
-<style scoped>
-h1 {
-  color: red;
-}
-
-button {
-  background-color: blue;
-  color: white;
-}
-
-</style>
