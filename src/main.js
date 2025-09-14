@@ -19,6 +19,17 @@ Vue.component('button-counter', {
     `
 })
 
+Vue.mixin({
+    created() {
+        console.log('组件创建了:', this.$options.name)
+    },
+    methods: {
+        $log(message) {
+            console.log(`[${this.$options.name}]:`, message)
+        }
+    }
+})
+
 // 配置 axios 基础URL
 axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL || 'http://localhost:3000/api'
 
