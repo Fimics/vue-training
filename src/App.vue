@@ -1,5 +1,21 @@
 <template>
   <div id="app">
+
+    <div class="component-box">
+      <h2>全局注册组件</h2>
+      <!-- 使用全局注册的 button-counter 组件 -->
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <p>说明：全局注册的组件可以在任何地方使用，每个实例都有自己的状态</p>
+    </div>
+
+    <div class="component-box">
+      <h2>局部注册组件</h2>
+      <!-- 使用局部注册的组件 -->
+      <component-a></component-a>
+      <component-b></component-b>
+      <p>说明：局部注册的组件只能在注册它的组件内部使用</p>
+    </div>
     <div class="component-grid">
       <FirstVue message="hello world11"/>
       <LifeCycle/>
@@ -45,6 +61,8 @@ import ArrayRender  from "@/test/ArrayRender.vue";
 import FormBase from "@/test/FormBase.vue";
 import ValueBinding from "@/test/ValueBinding.vue";
 import ModifierDemo from "@/test/ModifierDemo.vue";
+import LocalComponentA from "@/test/LocalComponentA.vue";
+import LocalComponentB from "@/test/LocalComponentB.vue";
 // 导入外部样式文件（保留原CSS中的所有注释）
 
 export default {
@@ -68,7 +86,9 @@ export default {
     ArrayRender,
     FormBase,
     ValueBinding,
-    ModifierDemo
+    ModifierDemo,
+    'component-a': LocalComponentA,
+    'component-b': LocalComponentB
   }
 }
 </script>

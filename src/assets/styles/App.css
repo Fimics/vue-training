@@ -55,3 +55,16 @@
         grid-template-columns: 1fr; /* 手机设备1列 */
     }
 }
+
+.component-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+.component-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
