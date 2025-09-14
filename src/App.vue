@@ -51,6 +51,9 @@
       <SlotDynamicClient/>
       <MixinLoginForm message="loginForm"/>
       <MixinsMergeComponent/>
+      <MixinsWindowSizeReporter/>
+      <FocusDemo/>
+      <CommandHooks/>
     </div>
 
   </div>
@@ -90,6 +93,9 @@ import SlotParent from "@/test/SlotParent.vue";
 import SlotDynamicClient from "@/test/SlotDynamicClient.vue";
 import MixinLoginForm from "@/test/MixinLoginForm.vue";
 import MixinsMergeComponent from "@/test/MixinsMergeComponent.vue";
+import MixinsWindowSizeReporter from "@/test/MixinsWindowSizeReporter.vue";
+import FocusDemo  from "@/test/FocusDemo.vue";
+import CommandHooks from "@/test/CommandHooks.vue";
 // 导入外部样式文件（保留原CSS中的所有注释）
 
 export default {
@@ -126,7 +132,10 @@ export default {
     SlotParent,
     SlotDynamicClient,
     MixinLoginForm,
-    MixinsMergeComponent
+    MixinsMergeComponent,
+    MixinsWindowSizeReporter,
+    FocusDemo,
+    CommandHooks
   }
 }
 </script>

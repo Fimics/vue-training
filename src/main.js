@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
 import { Notification } from 'element-ui'
+import focusDirective from '@/directives/focus'
+import demoDirective from '@/directives/demoDirective'
 
 Vue.config.productionTip = false
 
@@ -94,6 +96,8 @@ axios.defaults.timeout = 10000 // 10秒
 // 将 axios 挂载到 Vue 原型
 Vue.prototype.$http = axios
 Vue.prototype.$notify = Notification
+Vue.directive('focus', focusDirective)
+Vue.directive('demo', demoDirective)
 
 new Vue({
     render: h => h(App),
