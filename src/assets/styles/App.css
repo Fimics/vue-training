@@ -5,10 +5,10 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
+    margin-top: 10px;
     width: 100%; /* 确保宽度占满整个浏览器 */
     max-width: 100%; /* 移除最大宽度限制 */
-    padding: 0 20px; /* 添加左右内边距 */
+    padding: 0 10px; /* 添加左右内边距 */
     box-sizing: border-box; /* 确保内边距不影响总宽度 */
 }
 
@@ -16,18 +16,18 @@
 .component-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 5列等宽 */
-    gap: 20px;
+    gap: 10px;
     width: 100%; /* 占满父容器 */
     max-width: 100%; /* 移除最大宽度限制 */
     margin: 0 auto; /* 水平居中 */
-    padding: 20px 0; /* 添加上下内边距 */
+    padding: 1px 0; /* 添加上下内边距 */
 }
 
 /* 每个组件卡片样式 */
 .component-grid > * {
     background: white;
     border-radius: 8px;
-    padding: 20px;
+    padding: 1px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 

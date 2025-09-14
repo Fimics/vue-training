@@ -14,6 +14,7 @@
       <EventKey message="event key"/>
       <ComputedDemo message="computed demo"/>
       <WatchDemo message="watch-demo"/>
+      <ConditionRender message="condition-render"/>
     </div>
   </div>
 </template>
@@ -33,6 +34,7 @@ import EventClick from "@/test/EventClick.vue";
 import EventKey from "@/test/EventKey.vue";
 import ComputedDemo from "@/test/ComputedDemo.vue";
 import WatchDemo from "@/test/WatchDemo.vue";
+import ConditionRender from "@/test/ConditionRender.vue";
 
 // 导入外部样式文件（保留原CSS中的所有注释）
 
@@ -51,7 +53,8 @@ export default {
     EventClick,
     EventKey,
     ComputedDemo,
-    WatchDemo
+    WatchDemo,
+    ConditionRender
   }
 }
 </script>
