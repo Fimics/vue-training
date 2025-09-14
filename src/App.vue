@@ -41,6 +41,7 @@
       <BrotherParent/>
       <EventBusA />
       <EventBusB/>
+      <AncestorComponent/>
     </div>
 
   </div>
@@ -74,6 +75,7 @@ import ParentComponent from "@/test/ParentComponent.vue";
 import BrotherParent from "@/test/BrotherParent.vue";
 import EventBusA from "@/test/EventBusA.vue";
 import EventBusB from "@/test/EventBusB.vue";
+import AncestorComponent from "@/test/AncestorComponent.vue";
 // 导入外部样式文件（保留原CSS中的所有注释）
 
 export default {
@@ -104,7 +106,8 @@ export default {
     ParentComponent,
     BrotherParent,
     EventBusA,
-    EventBusB
+    EventBusB,
+    AncestorComponent
   }
 }
 </script>
