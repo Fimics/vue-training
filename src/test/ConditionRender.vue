@@ -1,7 +1,7 @@
 <template>
   <div class="component">
     <!-- 使用v-if在template上 -->
-    <h1>{{message}}</h1>
+    <h3>{{message}}</h3>
     <template v-if="loginType === 'username'">
       <label>Username</label>
       <input

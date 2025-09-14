@@ -15,6 +15,11 @@
       <ComputedDemo message="computed demo"/>
       <WatchDemo message="watch-demo"/>
       <ConditionRender message="condition-render"/>
+      <ListRender message="listRender"/>
+      <ArrayRender message="arrayRender"/>
+      <FormBase message="formBase"/>
+      <ValueBinding message="valueBinding"/>
+      <ModifierDemo message="modifier-demo"/>
     </div>
   </div>
 </template>
@@ -35,7 +40,11 @@ import EventKey from "@/test/EventKey.vue";
 import ComputedDemo from "@/test/ComputedDemo.vue";
 import WatchDemo from "@/test/WatchDemo.vue";
 import ConditionRender from "@/test/ConditionRender.vue";
-
+import ListRender from "@/test/ListRender.vue";
+import ArrayRender  from "@/test/ArrayRender.vue";
+import FormBase from "@/test/FormBase.vue";
+import ValueBinding from "@/test/ValueBinding.vue";
+import ModifierDemo from "@/test/ModifierDemo.vue";
 // 导入外部样式文件（保留原CSS中的所有注释）
 
 export default {
@@ -54,7 +63,12 @@ export default {
     EventKey,
     ComputedDemo,
     WatchDemo,
-    ConditionRender
+    ConditionRender,
+    ListRender,
+    ArrayRender,
+    FormBase,
+    ValueBinding,
+    ModifierDemo
   }
 }
 </script>
