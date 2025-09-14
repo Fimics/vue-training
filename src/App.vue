@@ -54,6 +54,8 @@
       <MixinsWindowSizeReporter/>
       <FocusDemo/>
       <CommandHooks/>
+      <DebounceButton/>
+      <DraggableDemo/>
     </div>
 
   </div>
@@ -96,6 +98,8 @@ import MixinsMergeComponent from "@/test/MixinsMergeComponent.vue";
 import MixinsWindowSizeReporter from "@/test/MixinsWindowSizeReporter.vue";
 import FocusDemo  from "@/test/FocusDemo.vue";
 import CommandHooks from "@/test/CommandHooks.vue";
+import DebounceButton from "@/test/DebounceButton.vue";
+import DraggableDemo from "@/test/DraggableDemo.vue";
 // 导入外部样式文件（保留原CSS中的所有注释）
 
 export default {
@@ -135,7 +139,9 @@ export default {
     MixinsMergeComponent,
     MixinsWindowSizeReporter,
     FocusDemo,
-    CommandHooks
+    CommandHooks,
+    DebounceButton,
+    DraggableDemo,
   }
 }
 </script>
