@@ -38,7 +38,11 @@
       <ModifierDemo message="modifier-demo"/>
       <PropsComponent />
       <ParentComponent/>
+      <BrotherParent/>
+      <EventBusA />
+      <EventBusB/>
     </div>
+
   </div>
 </template>
 
@@ -67,6 +71,9 @@ import LocalComponentA from "@/test/LocalComponentA.vue";
 import LocalComponentB from "@/test/LocalComponentB.vue";
 import PropsComponent from "@/test/PropsComponent.vue";
 import ParentComponent from "@/test/ParentComponent.vue";
+import BrotherParent from "@/test/BrotherParent.vue";
+import EventBusA from "@/test/EventBusA.vue";
+import EventBusB from "@/test/EventBusB.vue";
 // 导入外部样式文件（保留原CSS中的所有注释）
 
 export default {
@@ -94,7 +101,10 @@ export default {
     'component-a': LocalComponentA,
     'component-b': LocalComponentB,
     PropsComponent,
-    ParentComponent
+    ParentComponent,
+    BrotherParent,
+    EventBusA,
+    EventBusB
   }
 }
 </script>

@@ -1444,28 +1444,28 @@ export default {
 <p><strong>方法二：事件总线</strong></p> 
 <pre style="max-height: max-content !important; "><code>// eventBus.js
 import Vue from 'vue'
-export const EventBus = new Vue()
+export const Eventbus = new Vue()
 
 // 组件A
-import { EventBus } from './eventBus'
+import { Eventbus } from './eventBus'
 
 export default {
   methods: {
     sendMessage() {
-      EventBus.$emit('message-sent', 'Hello from Component A')
+      Eventbus.$emit('message-sent', 'Hello from Component A')
     }
   },
   beforeDestroy() {
-    EventBus.$off('message-sent')
+    Eventbus.$off('message-sent')
   }
 }
 
 // 组件B
-import { EventBus } from './eventBus'
+import { Eventbus } from './eventBus'
 
 export default {
   created() {
-    EventBus.$on('message-sent', this.handleMessage)
+    Eventbus.$on('message-sent', this.handleMessage)
   },
   methods: {
     handleMessage(message) {
@@ -1473,7 +1473,7 @@ export default {
     }
   },
   beforeDestroy() {
-    EventBus.$off('message-sent', this.handleMessage)
+    Eventbus.$off('message-sent', this.handleMessage)
   }
 }
 </code></pre> 
