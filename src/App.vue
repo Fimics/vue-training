@@ -49,6 +49,7 @@
       </BaseLayout>
       <SlotParent/>
       <SlotDynamicClient/>
+      <MixinLoginForm message="loginForm"/>
     </div>
 
   </div>
@@ -86,6 +87,7 @@ import AncestorComponent from "@/test/AncestorComponent.vue";
 import BaseLayout from "@/test/BaseLayout.vue";
 import SlotParent from "@/test/SlotParent.vue";
 import SlotDynamicClient from "@/test/SlotDynamicClient.vue";
+import MixinLoginForm from "@/test/MixinLoginForm.vue";
 // 导入外部样式文件（保留原CSS中的所有注释）
 
 export default {
@@ -120,7 +122,8 @@ export default {
     AncestorComponent,
     BaseLayout,
     SlotParent,
-    SlotDynamicClient
+    SlotDynamicClient,
+    MixinLoginForm
   }
 }
 </script>
