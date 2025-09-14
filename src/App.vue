@@ -42,6 +42,11 @@
       <EventBusA />
       <EventBusB/>
       <AncestorComponent/>
+      <BaseLayout>
+        <template v-slot:header><h1>页面标题</h1></template>
+        <template v-slot:default><p>主要内容1</p><p>更多内容</p></template>
+        <template #footer><p>版权信息</p></template>
+      </BaseLayout>
     </div>
 
   </div>
@@ -76,6 +81,7 @@ import BrotherParent from "@/test/BrotherParent.vue";
 import EventBusA from "@/test/EventBusA.vue";
 import EventBusB from "@/test/EventBusB.vue";
 import AncestorComponent from "@/test/AncestorComponent.vue";
+import BaseLayout from "@/test/BaseLayout.vue";
 // 导入外部样式文件（保留原CSS中的所有注释）
 
 export default {
@@ -107,7 +113,8 @@ export default {
     BrotherParent,
     EventBusA,
     EventBusB,
-    AncestorComponent
+    AncestorComponent,
+    BaseLayout,
   }
 }
 </script>
