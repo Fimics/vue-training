@@ -36,6 +36,8 @@
       <FormBase message="formBase"/>
       <ValueBinding message="valueBinding"/>
       <ModifierDemo message="modifier-demo"/>
+      <PropsComponent />
+      <ParentComponent/>
     </div>
   </div>
 </template>
@@ -63,6 +65,8 @@ import ValueBinding from "@/test/ValueBinding.vue";
 import ModifierDemo from "@/test/ModifierDemo.vue";
 import LocalComponentA from "@/test/LocalComponentA.vue";
 import LocalComponentB from "@/test/LocalComponentB.vue";
+import PropsComponent from "@/test/PropsComponent.vue";
+import ParentComponent from "@/test/ParentComponent.vue";
 // 导入外部样式文件（保留原CSS中的所有注释）
 
 export default {
@@ -88,7 +92,9 @@ export default {
     ValueBinding,
     ModifierDemo,
     'component-a': LocalComponentA,
-    'component-b': LocalComponentB
+    'component-b': LocalComponentB,
+    PropsComponent,
+    ParentComponent
   }
 }
 </script>
