@@ -48,6 +48,7 @@
         <template #footer><p>版权信息</p></template>
       </BaseLayout>
       <SlotParent/>
+      <SlotDynamicClient/>
     </div>
 
   </div>
@@ -84,6 +85,7 @@ import EventBusB from "@/test/EventBusB.vue";
 import AncestorComponent from "@/test/AncestorComponent.vue";
 import BaseLayout from "@/test/BaseLayout.vue";
 import SlotParent from "@/test/SlotParent.vue";
+import SlotDynamicClient from "@/test/SlotDynamicClient.vue";
 // 导入外部样式文件（保留原CSS中的所有注释）
 
 export default {
@@ -117,7 +119,8 @@ export default {
     EventBusB,
     AncestorComponent,
     BaseLayout,
-    SlotParent
+    SlotParent,
+    SlotDynamicClient
   }
 }
 </script>
