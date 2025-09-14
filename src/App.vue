@@ -50,6 +50,7 @@
       <SlotParent/>
       <SlotDynamicClient/>
       <MixinLoginForm message="loginForm"/>
+      <MixinsMergeComponent/>
     </div>
 
   </div>
@@ -88,6 +89,7 @@ import BaseLayout from "@/test/BaseLayout.vue";
 import SlotParent from "@/test/SlotParent.vue";
 import SlotDynamicClient from "@/test/SlotDynamicClient.vue";
 import MixinLoginForm from "@/test/MixinLoginForm.vue";
+import MixinsMergeComponent from "@/test/MixinsMergeComponent.vue";
 // 导入外部样式文件（保留原CSS中的所有注释）
 
 export default {
@@ -123,7 +125,8 @@ export default {
     BaseLayout,
     SlotParent,
     SlotDynamicClient,
-    MixinLoginForm
+    MixinLoginForm,
+    MixinsMergeComponent
   }
 }
 </script>
