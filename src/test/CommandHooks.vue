@@ -37,3 +37,20 @@ export default {
   transition: background 0.3s;
 }
 </style>
+
+<!--指令参数详解-->
+
+<!--Vue.directive('demo', {-->
+<!--bind(el, binding, vnode) {-->
+<!--console.log('指令名:', binding.name)      // demo-->
+<!--console.log('指令值:', binding.value)     // 指令绑定的值-->
+<!--console.log('旧值:', binding.oldValue)    // 前一个值-->
+<!--console.log('表达式:', binding.expression) // 字符串形式的指令表达式-->
+<!--console.log('参数:', binding.arg)         // 传给指令的参数-->
+<!--console.log('修饰符:', binding.modifiers) // 修饰符对象-->
+<!--console.log('VNode:', vnode)             // Vue编译生成的虚拟节点-->
+<!--}-->
+<!--})-->
+
+<!--&lt;!&ndash; 使用示例 &ndash;&gt;-->
+<!--<div v-demo:foo.a.b="message"></div>-->
