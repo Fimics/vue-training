@@ -47,12 +47,28 @@ export default {
   min-height: 100vh;
 }
 
+.app-container {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 120px); /* 减去页眉页脚高度 */
+  overflow-y: auto;
+}
+
 /* 主要内容区域的容器样式 */
 .main-content {
   /* 使用 Flexbox 布局 */
   display: flex;
   /* 填充剩余空间（使中间内容区域自动拉伸） */
   flex: 1;
+  position: relative;
 }
 
 /* 主内容区的样式 */
@@ -61,5 +77,23 @@ main {
   flex: 1;
   /* 内边距，避免内容贴边 */
   padding: 20px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  min-width: 0; /* 防止内容溢出 */
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
 }
 </style>
