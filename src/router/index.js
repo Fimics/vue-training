@@ -55,6 +55,7 @@ router.beforeResolve((to, from, next) => {
 
 // 全局后置钩子
 router.afterEach((to, from) => {
+    console.log(from)
     console.log('Navigation completed')
     document.title = to.meta.title || 'Vue Router Demo'
 })

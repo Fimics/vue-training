@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'Child',
+  name: 'ChildPage',
   methods: {
     goToParentDefault() {
       this.$router.push({ name: 'ParentDefault' })

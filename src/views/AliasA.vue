@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'AliasA',
+  name: 'AliasAPage',
   computed: {
     routeInfo() {
       return {

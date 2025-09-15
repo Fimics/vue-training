@@ -1,20 +1,11 @@
-
-// 定义所有路由配置
-// 使用动态导入实现路由懒加载
-// 使用 meta 字段存储路由元信息
-// 包含各种路由功能：
-// 动态路由 (/user/:id)
-// 嵌套路由 (/parent/child)
-// 命名视图 (/dashboard)
-// 重定向 (/redirect)
-// 别名 (/a 和 /b)
-// 404 页面 (*)
-
 const routes = [
     {
         path: '/',
         name: 'Home',
-        component: () => import('@/views/Home.vue'),
+        components: {
+            default: () => import('@/views/Home.vue'),
+            sidebar: () => import('@/components/layout/AppSidebar.vue')
+        },
         meta: {
             title: '首页'
         }
@@ -22,7 +13,10 @@ const routes = [
     {
         path: '/about',
         name: 'About',
-        component: () => import('@/views/About.vue'),
+        components: {
+            default: () => import('@/views/About.vue'),
+            sidebar: () => import('@/components/layout/AppSidebar.vue')
+        },
         meta: {
             title: '关于我们'
         }
@@ -30,7 +24,10 @@ const routes = [
     {
         path: '/login',
         name: 'Login',
-        component: () => import('@/views/Login.vue'),
+        components: {  // 改为复数 components
+            default: () => import('@/views/Login.vue'),
+            sidebar: () => import('@/components/layout/AppSidebar.vue')  // 强制添加侧边栏
+        },
         meta: {
             title: '登录',
             guestOnly: true
@@ -39,13 +36,15 @@ const routes = [
     {
         path: '/user/:id',
         name: 'User',
-        component: () => import('@/views/User.vue'),
+        components: {
+            default: () => import('@/views/User.vue'),
+            sidebar: () => import('@/components/layout/AppSidebar.vue')
+        },
         meta: {
             title: '用户详情',
             requiresAuth: true
         },
         beforeEnter: (to, from, next) => {
-            // 验证用户ID是否为数字
             if (/^\d+$/.test(to.params.id)) {
                 next()
             } else {
@@ -55,7 +54,10 @@ const routes = [
     },
     {
         path: '/parent',
-        component: () => import('@/views/Parent.vue'),
+        components: {
+            default: () => import('@/views/Parent.vue'),
+            sidebar: () => import('@/components/layout/AppSidebar.vue')
+        },
         meta: {
             title: '父组件'
         },
@@ -63,7 +65,10 @@ const routes = [
             {
                 path: '',
                 name: 'ParentDefault',
-                component: () => import('@/views/ParentDefault.vue'),
+                components: {
+                    default: () => import('@/views/ParentDefault.vue'),
+                    sidebar: () => import('@/components/layout/AppSidebar.vue')
+                },
                 meta: {
                     title: '父组件默认'
                 }
@@ -71,7 +76,10 @@ const routes = [
             {
                 path: 'child',
                 name: 'Child',
-                component: () => import('@/views/Child.vue'),
+                components: {
+                    default: () => import('@/views/Child.vue'),
+                    sidebar: () => import('@/components/layout/AppSidebar.vue')
+                },
                 meta: {
                     title: '子组件'
                 }
@@ -96,7 +104,10 @@ const routes = [
     },
     {
         path: '/a',
-        component: () => import('@/views/AliasA.vue'),
+        components: {
+            default: () => import('@/views/AliasA.vue'),
+            sidebar: () => import('@/components/layout/AppSidebar.vue')
+        },
         alias: '/b',
         meta: {
             title: '别名示例'
@@ -105,7 +116,10 @@ const routes = [
     {
         path: '*',
         name: 'NotFound',
-        component: () => import('@/views/NotFound.vue'),
+        components: {  // 改为复数 components
+            default: () => import('@/views/NotFound.vue'),
+            sidebar: () => import('@/components/layout/AppSidebar.vue')  // 强制添加侧边栏
+        },
         meta: {
             title: '404 页面未找到'
         }

@@ -18,7 +18,7 @@
 import Loading from '@/components/shared/Loading.vue'
 
 export default {
-  name: 'Home',
+  name: 'HomePage',
   components: {
     Loading
   },

@@ -8,3 +8,18 @@
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  name: 'ParentPage',
+  methods: {
+    goBack() {
+      if (window.history.length > 1) {
+        this.$router.go(-1)
+      } else {
+        this.$router.push('/')
+      }
+    }
+  }
+}
+</script>

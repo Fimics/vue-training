@@ -22,6 +22,7 @@
 
 <script>
 export default {
+  name: 'AppHeader',
   methods: {
     logout() {
       this.$store.dispatch('logout')
