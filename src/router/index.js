@@ -1,4 +1,4 @@
-// 导入 Vue 库
+// 导入 Vue 库  主路由配置
 import Vue from 'vue'
 // 导入 VueRouter 库
 import VueRouter from 'vue-router'

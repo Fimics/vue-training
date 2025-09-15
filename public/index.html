@@ -1,17 +1,37 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
+<!-- HTML5 文档类型声明 -->
+<html lang="en">
+<!-- 根元素，设置语言为英语 -->
+
+<head>
+    <!-- 头部开始 -->
     <meta charset="utf-8">
+    <!-- 字符编码设置为 UTF-8 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 告诉 IE 浏览器使用最新的渲染引擎 -->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- 响应式视口设置，宽度=device-width，初始缩放=1.0 -->
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <!-- 网站图标，使用 BASE_URL 环境变量 -->
     <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+    <!-- 页面标题，从 webpack 配置中获取 -->
+</head>
+<!-- 头部结束 -->
+
+<body>
+<!-- 主体开始 -->
+<noscript>
+    <!-- 当浏览器禁用 JavaScript 时显示的提示 -->
+    <strong>
+        抱歉，<%= htmlWebpackPlugin.options.title %> 需要启用 JavaScript 才能正常工作。
+    </strong>
+</noscript>
+<div id="app"></div>
+<!-- Vue 应用的挂载点 -->
+<!-- built files will be auto injected -->
+<!-- 构建后的文件会自动注入到这里 -->
+</body>
+<!-- 主体结束 -->
+
 </html>
+<!-- 文档结束 -->
