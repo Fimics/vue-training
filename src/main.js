@@ -99,6 +99,13 @@ Vue.prototype.$notify = Notification
 Vue.directive('focus', focusDirective)
 Vue.directive('demo', demoDirective)
 
+//全局过滤器
+Vue.filter('capitalize', function(value) {
+    if (!value) return '';  // 如果值为空，返回空字符串
+    value = value.toString();  // 确保值是字符串
+    return value.charAt(0).toUpperCase() + value.slice(1);  // 首字母大写 + 剩余部分
+});
+
 new Vue({
     render: h => h(App),
 }).$mount('#app')

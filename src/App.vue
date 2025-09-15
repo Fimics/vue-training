@@ -56,6 +56,12 @@
       <CommandHooks/>
       <DebounceButton/>
       <DraggableDemo/>
+
+      <div>
+        <p>{{ 'vue.js' | capitalize }}</p>  <!-- 使用全局过滤器 -->
+        <FilterCapitalize />  <!-- 引入组件 -->
+        <p>{{ null| capitalize }}</p>  <!-- 再次使用全局过滤器 -->
+      </div>
     </div>
 
   </div>
@@ -100,6 +106,7 @@ import FocusDemo  from "@/test/FocusDemo.vue";
 import CommandHooks from "@/test/CommandHooks.vue";
 import DebounceButton from "@/test/DebounceButton.vue";
 import DraggableDemo from "@/test/DraggableDemo.vue";
+import FilterCapitalize from "@/test/FilterCapitalize.vue";
 // 导入外部样式文件（保留原CSS中的所有注释）
 
 export default {
@@ -142,6 +149,7 @@ export default {
     CommandHooks,
     DebounceButton,
     DraggableDemo,
+    FilterCapitalize
   }
 }
 </script>
