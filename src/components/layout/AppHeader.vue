@@ -9,6 +9,9 @@
       <!-- 关于页面路由链接 -->
       <router-link to="/about">关于</router-link>
 
+      <!-- store页面路由链接 -->
+      <router-link to="/store">store</router-link>
+
       <!-- 带参数的用户详情页路由链接（使用命名路由） -->
       <router-link :to="{ name: 'User', params: { id: 123 }}">用户123</router-link>
 

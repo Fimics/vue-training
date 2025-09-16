@@ -1,69 +1,81 @@
-// 导入Vue库
 import Vue from 'vue'
-// 导入Vuex库
 import Vuex from 'vuex'
+import auth from '@/store/modules/auth'
+import products from '@/store/modules/products'
+import logger from '@/store/plugins/logger'
+import persist from '@/store/plugins/persist'
 
-// 告诉Vue使用Vuex插件
+// 使用Vuex插件
 Vue.use(Vuex)
 
 // 创建并导出Vuex Store实例
 export default new Vuex.Store({
-    // 状态对象，存储应用的所有状态
+    // 全局状态
     state: {
-        // 存储用户信息，初始为null
-        user: null,
-        // 认证状态，初始为false
-        isAuthenticated: false
+        appName: 'Vuex Demo App', // 应用名称
+        isLoading: false,         // 全局加载状态
+        error: null               // 全局错误信息
     },
 
-    // Getter方法，用于从state中派生出一些状态
+    // 计算属性
     getters: {
-        // 获取当前用户
-        currentUser: state => state.user,
-        // 获取认证状态
-        isAuthenticated: state => state.isAuthenticated,
-        // 检查是否有仪表盘访问权限
-        hasDashboardAccess: (state, getters) => {
-            // 需要已认证且用户角色为admin
-            return getters.isAuthenticated && state.user.role === 'admin'
-        }
+        // 获取应用名称
+        appName: state => state.appName,
+
+        // 获取加载状态
+        isLoading: state => state.isLoading,
+
+        // 获取错误信息
+        error: state => state.error,
+
+        // 带参数的计算属性
+        appNameWithVersion: state => version => `${state.appName} v${version}`
     },
 
-    // Mutation方法，用于修改state（必须是同步函数）
+    // 同步变更状态的方法
     mutations: {
-        // 设置用户信息的mutation
-        SET_USER(state, user) {
-            // 更新用户信息
-            state.user = user
-            // 根据user是否存在设置认证状态
-            state.isAuthenticated = !!user
-        }
-    },
-
-    // Action方法，可以包含任意异步操作
-    actions: {
-        // 登录action，接收credentials参数
-        login({ commit }, credentials) {
-            // 返回Promise以便调用处可以处理异步结果
-            return new Promise((resolve) => {
-                // 模拟API调用延迟
-                setTimeout(() => {
-                    // 提交mutation设置用户信息
-                    commit('SET_USER', {
-                        id: 1,
-                        name: credentials.username,
-                        role: 'admin'
-                    })
-                    // 解析Promise
-                    resolve()
-                }, 500) // 模拟500ms网络延迟
-            })
+        // 设置加载状态
+        SET_LOADING(state, isLoading) {
+            state.isLoading = isLoading
         },
 
-        // 登出action
-        logout({ commit }) {
-            // 提交mutation清空用户信息
-            commit('SET_USER', null)
+        // 设置错误信息
+        SET_ERROR(state, error) {
+            state.error = error
+        },
+
+        // 清除错误信息
+        CLEAR_ERROR(state) {
+            state.error = null
         }
-    }
+    },
+
+    // 异步操作
+    actions: {
+        // 清除错误
+        clearError({ commit }) {
+            commit('CLEAR_ERROR')
+        },
+
+        // 设置错误
+        setError({ commit }, error) {
+            commit('SET_ERROR', error)
+            // 5秒后自动清除错误
+            setTimeout(() => {
+                commit('CLEAR_ERROR')
+            }, 5000)
+        }
+    },
+
+    // 模块
+    modules: {
+        auth,     // 认证模块
+        products  // 产品模块
+    },
+
+    // 插件
+    plugins: [logger(), persist()],
+
+    // 严格模式（开发环境启用）
+    strict: process.env.NODE_ENV !== 'production'
 })

@@ -33,6 +33,13 @@
         </router-link>
       </li>
 
+      <!-- store页面菜单项 -->
+      <li>
+        <router-link to="/store" active-class="active">
+          <span class="icon">😂</span>
+          <span>Store</span>
+        </router-link>
+      </li>
       <!-- 关于页面菜单项 -->
       <li>
         <router-link to="/about" active-class="active">

@@ -20,6 +20,58 @@ const routes = [
         }
     },
 
+    // Store页面路由
+    {
+        path: '/store',
+        name: 'Store',
+        components: {
+            default: () => import('@/views/Store.vue'),
+            sidebar: () => import('@/components/layout/AppSidebar.vue')
+        },
+        meta: {
+            title: 'Store'
+        }
+    },
+
+    // loginForm页面路由
+    {
+        path: '/loginForm',
+        name: 'loginForm',
+        components: {
+            default: () => import('@/components/LoginForm.vue'),
+            sidebar: () => import('@/components/layout/AppSidebar.vue')
+        },
+        meta: {
+            title: 'Store'
+        }
+    },
+
+    // products页面路由
+    {
+        path: '/products',
+        name: 'products',
+        components: {
+            default: () => import('@/components/ProductList.vue'),
+            sidebar: () => import('@/components/layout/AppSidebar.vue')
+        },
+        meta: {
+            title: 'Store'
+        }
+    },
+
+    //counter页面路由
+    {
+        path: '/counter',
+        name: 'counter',
+        components: {
+            default: () => import('@/components/Counter.vue'),
+            sidebar: () => import('@/components/layout/AppSidebar.vue')
+        },
+        meta: {
+            title: 'Store'
+        }
+    },
+
     // 关于页面路由
     {
         path: '/about',
