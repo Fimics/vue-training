@@ -7,6 +7,10 @@
 <!--      <router-view name="sidebar">（侧边栏）-->
 <!--      这是一个命名路由视图，用于动态加载侧边栏组件。-->
 <!--      name="sidebar"表示它会在 Vue Router 配置中匹配 components: { sidebar: SomeSidebarComponent }-->
+
+<!--      <router-view>→ 匹配 components.default-->
+
+<!--        <router-view name="sidebar">→ 匹配 components.sidebar-->
       <router-view name="sidebar"></router-view>
 <!--      <main>（主内容区）-->
       <main>
